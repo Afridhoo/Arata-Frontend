@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <filter id="shadow-hotel" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Bentuk Pin Utama -->
+  <path d="M 32 4 C 20.954 4 12 12.954 12 24 C 12 38 32 60 32 60 C 32 60 52 38 52 24 C 52 12.954 43.046 4 32 4 Z" fill="#2196F3" filter="url(#shadow-hotel)"/>
+  
+  <!-- Lingkaran Putih Bagian Dalam -->
+  <circle cx="32" cy="24" r="14" fill="#ffffff" />
+  
+  <!-- Ikon Tempat Tidur -->
+  <!-- Sandaran Kepala (Headboard) -->
+  <rect x="20" y="15" width="2" height="16" rx="1" fill="#2196F3"/>
+  <!-- Bantal -->
+  <rect x="23" y="21" width="8" height="4" rx="1" fill="#2196F3"/>
+  <!-- Kasur & Selimut -->
+  <path d="M 23 26 L 42 26 C 43.1 26 44 26.9 44 28 L 44 31 L 23 31 Z" fill="#2196F3"/>
+  <!-- Kaki Kasur -->
+  <rect x="23" y="31" width="2" height="2" fill="#2196F3"/>
+  <rect x="40" y="31" width="2" height="2" fill="#2196F3"/>
+</svg>

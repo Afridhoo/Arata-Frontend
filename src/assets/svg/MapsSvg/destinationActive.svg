@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 76" width="64" height="76">
+  <defs>
+    <linearGradient id="tourSelectedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF2A54" />
+      <stop offset="100%" stop-color="#FF6A00" />
+    </linearGradient>
+    <filter id="activeShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#FF2A54" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  <g filter="url(#activeShadow)">
+    <!-- Outer Glow Ring -->
+    <circle cx="32" cy="28" r="25" fill="none" stroke="#FF2A54" stroke-width="2.5" stroke-dasharray="4,2" opacity="0.7"/>
+    <!-- Base Marker Pin with White Border to POP -->
+    <path d="M32,6 C19.85,6 10,15.85 10,28 C10,45 32,72 32,72 C32,72 54,45 54,28 C54,15.85 44.15,6 32,6 Z" fill="url(#tourSelectedGrad)" stroke="#FFFFFF" stroke-width="1.5"/>
+    <!-- Inner White Badge -->
+    <circle cx="32" cy="28" r="13" fill="#FFFFFF"/>
+    <!-- Enhanced Camera Icon -->
+    <path d="M25 24 C24.2 24 23.5 24.7 23.5 25.5 L23.5 31.5 C23.5 32.3 24.2 33 25 33 L39 33 C39.8 33 40.5 32.3 40.5 31.5 L40.5 25.5 C40.5 24.7 39.8 24 39 24 L35.5 24 L34.2 22 L29.8 22 L28.5 24 Z" fill="#FF2A54"/>
+    <circle cx="32" cy="28.5" r="2.5" fill="#FFFFFF"/>
+    <!-- Tiny Selection Dot Indicator on Top -->
+    <circle cx="32" cy="2" r="2" fill="#FF2A54"/>
+  </g>
+</svg>

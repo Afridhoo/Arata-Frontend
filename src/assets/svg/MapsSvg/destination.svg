@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <filter id="shadow-tour" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Bentuk Pin Utama -->
+  <path d="M 32 4 C 20.954 4 12 12.954 12 24 C 12 38 32 60 32 60 C 32 60 52 38 52 24 C 52 12.954 43.046 4 32 4 Z" fill="#FF5722" filter="url(#shadow-tour)"/>
+  
+  <!-- Lingkaran Putih Bagian Dalam -->
+  <circle cx="32" cy="24" r="14" fill="#ffffff" />
+  
+  <!-- Ikon Kamera -->
+  <path d="M 24 16 L 26 14 L 38 14 L 40 16 L 42 16 C 43.1 16 44 16.9 44 18 L 44 30 C 44 31.1 43.1 32 42 32 L 22 32 C 20.9 32 20 31.1 20 30 L 20 18 C 20 16.9 20.9 16 22 16 L 24 16 Z" fill="#FF5722"/>
+  <circle cx="32" cy="24" r="4.5" fill="#ffffff" />
+  <circle cx="32" cy="24" r="2" fill="#FF5722" />
+  <circle cx="39" cy="19" r="1.5" fill="#ffffff" />
+</svg>
