@@ -13,36 +13,30 @@ import {
 import { formatDateId } from "@/utils/convertDate";
 import HoverCardUse from "../HoverCardUse";
 import { Link } from "react-router-dom";
-import { FiArrowRight } from "react-icons/fi";
 
 import ArrowUpRight from "../ArrowUpRight";
-import { LucideStar, LucideUser } from "lucide-react";
+import { LucideArrowUpRightFromSquare, LucideStar, LucideUser } from "lucide-react";
+import HeaderPerItem from "./HeaderPerItem";
+import AvatarSimpleUse from "../AvatarSimpleUse";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function ListGuideHome({ DataGuide }) {
+  const isMobile = useIsMobile();
+
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true }),
   );
 
   return (
     <section className="w-full py-10">
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
-        <div>
-          <h2 className="text-3xl font-bold text-foreground">
-            Pemandu Tur Kami
-          </h2>
-          <p className="text-muted-foreground mt-2 text-sm sm:text-base">
-            Berpetualang bersama para pemandu lokal terbaik yang ahli dan
-            berpengalaman.
-          </p>
-        </div>
-        <HoverCardUse
-          Render={
-            <Link className="inline-flex items-center text-slate-900 font-semibold hover:text-slate-600 transition-colors text-lg group">
-              Lihat Semua Pemandu
-              <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-            </Link>
+      <div className="md:mt-0 mt-20">
+        <HeaderPerItem
+          title={"Pemandu Tour Kami"}
+          desc={
+            "Berpetualang bersama para pemandu lokal terbaik yang ahli dan berpengalaman."
           }
-          RenderText={"Ke Halaman Lihat Pemandu"}
+          textLink={"Lihat Semua Pemandu"}
+          to={"/"}
         />
       </div>
 
@@ -71,7 +65,7 @@ export default function ListGuideHome({ DataGuide }) {
             return (
               <CarouselItem
                 key={index}
-                className=" md:pl-6 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+                className="md:pl-6 basis-1/2 sm:basis-1/3 lg:basis-1/2 xl:basis-1/3"
               >
                 <div className="py-2 h-full">
                   {
@@ -79,41 +73,40 @@ export default function ListGuideHome({ DataGuide }) {
                       Render={
                         <Link>
                           <Card className="h-full overflow-hidden relative group border-0 shadow-sm hover:shadow-lg transition-all duration-300">
-                            <CardContent className="p-5 pb-0 flex flex-col h-full bg-card relative">
-                              <div className="absolute top-0 right-3 flex flex-col gap-1.5 items-end z-10">
-                                <ArrowUpRight />
+                            <CardContent className="md:p-5 pb-0 flex flex-col h-full bg-card relative">
+                              <div className=" flex  absolute top-0 right-3  flex-col gap-1.5 items-end z-10">
+                                <LucideArrowUpRightFromSquare size={isMobile ? 12 : 18} />
                               </div>
 
-                              <div className="flex items-center gap-4 mt-2">
-                                <Avatar className="w-14 h-14 border-2 border-primary/20 shadow-sm text-lg">
-                                  <AvatarImage
-                                    src={photo}
-                                    alt={name}
-                                    className="object-cover"
+                              <div className="flex flex-wrap  truncate items-center max-w-30 md:max-w-full gap-4 md:mt-2">
+                                <div>
+                                  <AvatarSimpleUse
+                                    photo={photo}
+                                    isActive={true}
+                                    noBage={true}
+                                    size={isMobile && "small"}
                                   />
-                                  <AvatarFallback className="bg-primary/10 text-primary font-semibold">
-                                    {name}
-                                  </AvatarFallback>
-                                </Avatar>
-                                <div className="flex-1 min-w-0 pr-8">
-                                  <h3 className="text-base font-bold text-foreground truncate w-full">
+                                </div>
+                                <div className="flex-1 ">
+                                  <h3 className="text-sm md:text-lg font-bold text-foreground truncate w-full">
                                     {name}
                                   </h3>
-                                  <p className="text-xs text-muted-foreground mt-0.5 truncate w-full">
+                                  <p className="text-xs  md:text-sm text-muted-foreground mt-0.5 truncate w-full">
                                     {email}
                                   </p>
                                 </div>
                               </div>
 
-                              <div className="grid  mt-4 pt-4 border-t border-border/60">
-                                <div className=" text-muted-foreground text-xs px-2.5 py-1.5 rounded-md font-medium flex items-center gap-1.5">
-                                  <span>Total Memandu:</span>
+                              <div className="hidden md:grid  mt-4 pt-4 border-t border-border/60">
+                              
+                                <div className=" text-muted-foreground text-xs md:px-2.5 md:py-1.5 rounded-md font-medium flex justify-center md:justify-normal  items-center gap-1.5 flex-wrap md:text-sm ">
+                                  <span>Memandu:</span>
                                   <span className="font-bold text-foreground">
-                                    {totalHandle || 0}
+                                    {totalHandle || 0} Kali
                                   </span>
                                 </div>
-                                <div className=" text-muted-foreground text-xs px-2.5 py-1.5 rounded-md font-medium flex items-center gap-1.5">
-                                  <span>Memandu Sejak:</span>
+                                <div className=" text-muted-foreground text-xs px-2.5 py-1.5 rounded-md font-medium flex items-center gap-1.5 flex-wrap justify-center md:justify-normal md:text-sm">
+                                  <span>Sejak:</span>
                                   <span className="">
                                     {assignedAt &&
                                       formatDateId(assignedAt, true)}

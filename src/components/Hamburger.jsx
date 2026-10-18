@@ -1,0 +1,126 @@
+"use client";
+
+import * as React from "react";
+import { toast } from "sonner";
+
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+import {
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldLabel,
+  FieldTitle,
+} from "@/components/ui/field";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { LucideListCollapse } from "lucide-react";
+
+const deliveryTimes = [
+  {
+    value: "asap",
+    id: "delivery-asap",
+    label: "Standard delivery",
+    description: "25–35 min · Driver assigned now",
+    badge: "Fastest",
+  },
+  {
+    value: "5-00",
+    id: "delivery-5-00",
+    label: "5:00 PM – 5:15 PM",
+    description: "Prep starts at 4:45 PM",
+  },
+  {
+    value: "5-30",
+    id: "delivery-5-30",
+    label: "5:30 PM – 5:45 PM",
+    description: "Good if you're heading home",
+  },
+  {
+    value: "6-00",
+    id: "delivery-6-00",
+    label: "6:00 PM – 6:15 PM",
+    description: "Most popular · High demand",
+  },
+  {
+    value: "6-30",
+    id: "delivery-6-30",
+    label: "6:30 PM – 6:45 PM",
+    description: "Last slot before kitchen closes",
+  },
+];
+
+export default function Hamburger({navItems}) {
+  const [open, setOpen] = React.useState(false);
+  const [deliveryTime, setDeliveryTime] = React.useState("asap");
+  const isMobile = useIsMobile();
+
+  
+
+  return (
+    <Drawer
+      open={open}
+      onOpenChange={setOpen}
+      showSwipeHandle={isMobile}
+      swipeDirection={"left"}
+    >
+      <DrawerTrigger
+        render={
+          <Button variant="secondary">
+            <LucideListCollapse
+              size={12}
+              className={`transition-all ${open ? "-rotate-6" : "rotate-0"}`}
+            />
+          </Button>
+        }
+      />
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>Cari Halaman Yang Ingin Anda Kunjungi</DrawerTitle>
+          <DrawerDescription>
+            
+          </DrawerDescription>
+        </DrawerHeader>
+        <div className="flex-1 scroll-fade overflow-y-auto p-4">
+          <RadioGroup
+            value={deliveryTime}
+            onValueChange={setDeliveryTime}
+            className="gap-2"
+          >
+            {deliveryTimes.map((time) => (
+              <FieldLabel key={time.value} htmlFor={time.id}>
+                <Field orientation="horizontal">
+                  <FieldContent>
+                    <FieldTitle className="flex items-center gap-2">
+                      {time.label}
+                      {time.badge ? (
+                        <Badge variant="secondary">{time.badge}</Badge>
+                      ) : null}
+                    </FieldTitle>
+                    <FieldDescription>{time.description}</FieldDescription>
+                  </FieldContent>
+                  <RadioGroupItem value={time.value} id={time.id} />
+                </Field>
+              </FieldLabel>
+            ))}
+          </RadioGroup>
+        </div>
+        {/* <DrawerFooter>
+          <Button onClick className="h-[34px]">
+            Confirm Delivery Time
+          </Button>
+        </DrawerFooter> */}
+      </DrawerContent>
+    </Drawer>
+  );
+}

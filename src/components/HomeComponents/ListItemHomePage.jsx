@@ -17,14 +17,14 @@ export const importantInfoData = [
   {
     renderText: "Klik Untuk Menghubungi Nomor WhtasApp",
     icon: BsWhatsapp, // sesuaikan dengan icon library kamu (lucide-react misal)
-    title: "Nomor WhatsApp",
+    title: "WhatsApp",
     description: "0859-5857-272",
     href: "https://wa.me/6285958572272",
   },
   {
     renderText: "Klik Untuk Menghubungi Email",
     icon: FiMail,
-    title: "Email Support",
+    title: "Email",
     description: "support@natours.com",
     href: "mailto:support@natours.com",
   },

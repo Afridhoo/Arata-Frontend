@@ -23,8 +23,8 @@ export function LoginShadcn({ register }) {
   const { mutate: LoginByGoogle } = UseLoginByGoogle();
 
   return (
-    <div className="flex flex-col gap-6">
-      <Card>
+    <div className="flex flex-col gap-6 ">
+      <Card >
         <CardHeader className="text-center">
           <CardTitle className="text-xl">Selamat Datang Kembali</CardTitle>
           <CardDescription>
@@ -68,7 +68,7 @@ export function LoginShadcn({ register }) {
             <FieldSeparator className="mt-2  text-xs">
               Atau Lanjutkan Dengan
             </FieldSeparator>
-            <Field className={'w-full'}>
+            <Field>
               <GoogleLogin
                 onSuccess={(res) =>
                   LoginByGoogle({ credential: res.credential })

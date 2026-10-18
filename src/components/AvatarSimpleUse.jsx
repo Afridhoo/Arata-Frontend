@@ -2,6 +2,7 @@ import { LucideUser2 } from "lucide-react";
 import { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 export default function AvatarSimpleUse({ photo, isActive, size, noBage }) {
+    
   return (
     <Avatar size={size || "lg"}>
       <AvatarImage src={photo} className={` ${!isActive && "grayscale"}`} />

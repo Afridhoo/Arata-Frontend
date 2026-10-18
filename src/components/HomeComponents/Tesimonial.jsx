@@ -16,11 +16,13 @@ import {
 import AvatarSimpleUse from "../AvatarSimpleUse";
 import { LucideStar } from "lucide-react";
 import { BadgeSimpleUse } from "../BadgeSimpleUse";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function Tesimonial({ TESTIMONIALS }) {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true }),
   );
+  const isMobile = useIsMobile();
 
   return (
     <section className="py-24 md:py-32 px-6 md:px-12  ">
@@ -43,47 +45,46 @@ export default function Tesimonial({ TESTIMONIALS }) {
             <CarouselItem
               key={idx}
               className={
-                "md:pl-7  basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/3 "
+                "md:pl-7   basis-1/2 sm:basis-1/2 lg:basis-1/3 xl:basis-1/3 "
               }
             >
-              <div className="p-3 ">
-                <Card className={"h-[200px] overflow-y-auto"}>
-                  <CardContent className="flex items-center  justify-start p-6">
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <AvatarSimpleUse
-                          photo={el?.identity?.photo}
-                          isActive={true}
-                          noBage={true}
-                        />
-                        <div className="grid">
-                          <span>{el?.identity?.name}</span>
-                          <div className="flex  items-center">
-                            {Array.from({ length: 5 })?.map((_, i) => (
-                              <span key={i}>
-                                <LucideStar
-                                  fill={el.rating >= i + 1 ? "orange" : ""}
-                                  size={12}
-                                  stroke="none"
-                                />
-                              </span>
-                            ))}
+              <Card className={"h-[200px] overflow-y-auto border border-gray-200"}>
+                <CardContent className="flex items-center  justify-start md:p-6">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <AvatarSimpleUse
+                        photo={el?.identity?.photo}
+                        isActive={true}
+                        noBage={true}
+                        size={isMobile && "small"}
+                      />
+                      <div className="grid ">
+                        <span className="w-16 md:w-fit md:block flex flex-wrap">{el?.identity?.name}</span>
+                        <div className="flex  items-center overflow-hidden">
+                          {Array.from({ length: 5 })?.map((_, i) => (
+                            <span key={i}>
+                              <LucideStar
+                                fill={el.rating >= i + 1 ? "orange" : ""}
+                                size={12}
+                                stroke="none"
+                              />
+                            </span>
+                          ))}
 
-                            <BadgeSimpleUse
-                              style={"ml-2"}
-                              desc={`${el.rating}/5`}
-                              variant={"outline"}
-                            />
-                          </div>
+                          <BadgeSimpleUse
+                            style={"ml-2"}
+                            desc={`${el.rating}/5`}
+                            variant={"outline"}
+                          />
                         </div>
                       </div>
-                      <CardDescription className={"mt-2 "}>
-                        {el.message}
-                      </CardDescription>
                     </div>
-                  </CardContent>
-                </Card>
-              </div>
+                    <CardDescription className={"mt-2 flex md:block md:w-fit w-16 flex-wrap text-xs md:text-sm"}>
+                      {el.message}
+                    </CardDescription>
+                  </div>
+                </CardContent>
+              </Card>
             </CarouselItem>
           ))}
         </CarouselContent>
