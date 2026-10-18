@@ -68,7 +68,7 @@ export function LoginShadcn({ register }) {
             <FieldSeparator className="mt-2  text-xs">
               Atau Lanjutkan Dengan
             </FieldSeparator>
-            <Field>
+            <Field className={'w-full'}>
               <GoogleLogin
                 onSuccess={(res) =>
                   LoginByGoogle({ credential: res.credential })
