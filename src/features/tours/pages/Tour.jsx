@@ -57,37 +57,37 @@ export default function Tour() {
     return { ...el, identity: { name, photo } };
   });
 
-  const { destination, hotel } = locations;
+  const { destination, hotel } = locations || {};
+  const { date, description } = startLocation || {};
+
   const concatVal = [...destination, ...hotel];
   const getImg = (val) => val.map((el) => el.image);
-
-  console.log(tour);
 
   return (
     <div className="bg-white min-h-screen font-sans antialiased">
       <article>
-        {/* 1. Hero */}
         <Header
           img={imageCover}
           nameTour={name}
-          startLocName={startLocation?.description}
+          startLocName={description}
           subval={`${duration} Hari Perjalanan`}
         />
 
         {!isFullMap && <BookingTour tour={tour} />}
 
         <main className="max-w-5xl mx-auto px-6 sm:px-8">
-          {/* 2. Trip Information */}
+          
+          
           <QuickFacts tour={tour} />
 
-          {/* 3. About Tour */}
+
           <AboutTour tour={tour} />
 
-          {/* <AccordionListTourLocations locations={concatLocations} /> */}
-          {/* 4. Gallery — Destinasi */}
+
+
           <ImgPreviewTour tour={getImg(destination)} title="Destinasi" />
 
-          {/* 5. Gallery — Penginapan */}
+
           <ImgPreviewTour tour={getImg(hotel)} title="Penginapan" />
 
           {/* 6. Itinerary / Map */}
@@ -98,13 +98,14 @@ export default function Tour() {
             noRenderLine={true}
           />
 
-          <AccordionListTourLocations locations={concatVal} />
+          {date && <AccordionListTourLocations locations={concatVal} />}
 
           {normalizeDataGuide?.length > 0 && (
             <TourGuides guide={normalizeDataGuide} />
           )}
 
           {Review && Review?.length > 0 && <Tesimonial TESTIMONIALS={Review} />}
+
           <AccordionUse data={DataAccordion} fullSize={true} />
         </main>
 
