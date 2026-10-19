@@ -26,7 +26,7 @@ export function CarouselPhotoDisplay({ img, isDown, RenderText }) {
 
   return (
     <Carousel
-      className="w-full pt-5"
+      className="w-full pt-5 relative"
       setNumDisplay={setNumDisplay}
       numDisplay={numDisplay}
     >
@@ -62,9 +62,12 @@ export function CarouselPhotoDisplay({ img, isDown, RenderText }) {
           />
         ))}
       </CarouselContent>
-      <div>
-        <CarouselNext className="mt-80 mr-14" />
-        <CarouselPrevious className="mt-80 ml-232" />
+      <div className="absolute  right-13 -bottom-8">
+      
+
+        <CarouselNext size="lg" />
+        <CarouselPrevious size="lg" className={"ml-3"}/>
+       
       </div>
     </Carousel>
   );

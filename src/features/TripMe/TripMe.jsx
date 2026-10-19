@@ -273,18 +273,18 @@ export default function TripMe() {
 
           {getImgDocumentation?.length > 0 && (
             <div className="mt-25 ">
-              <div className="flex justify-between items-center">
+              <div className="flex flex-wrap gap-2 md:gap-0 justify-between  items-center">
                 <div className="grid gap-1 ">
                   <h2 className="font-semibold uppercase tracking-wider text-[13px]  text-gray-400 flex items-center gap-3 mb-1">
                     <span>Dokumentasi</span>
                   </h2>
-                  <span className="text-[26px] font-bold ">
+                  <span className=" text-[26px] font-bold ">
                     Foto Perjalanan
                   </span>
                 </div>
 
                 <div>
-                  <h2 className="cursor-pointer hover:text-gray-800 duration-300 font-semibold uppercase tracking-wider text-[15px] group text-gray-600 flex items-start  ">
+                  <h2 className="cursor-pointer hover:text-gray-800 duration-300 font-semibold uppercase tracking-wider   text-xs md:text-[15px] group text-gray-600 flex items-start  ">
                     <span>Lihat Seluruh Foto</span>
                     <ArrowUpRight />
                   </h2>
@@ -324,7 +324,7 @@ export default function TripMe() {
               checkTourNotOnGoing={checkTourNotOnGoing}
             />
             <Review
-              activeAccordion={!checkMobile && true}
+              activeAccordion={!checkMobile}
               idTour={idTour}
               idBooking={idBooking}
               img={imageCover}
