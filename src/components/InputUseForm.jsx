@@ -14,9 +14,9 @@ export default function InputUseForm({
   ...props
 }) {
   return (
-    <Field className="max-w-sm">
+    <Field className="md:max-w-sm">
       <FieldLabel htmlFor="inline-start-input">{label}</FieldLabel>
-      <InputGroup>
+      <InputGroup >
         <InputGroupInput
           placeholder={placeholder}
           type={type}
@@ -27,7 +27,7 @@ export default function InputUseForm({
         <InputGroupAddon>
           <Icon />
         </InputGroupAddon>
-        <InputGroupAddon align="inline-end">{label}</InputGroupAddon>
+        <InputGroupAddon className={"hidden md:block"} align="inline-end">{label}</InputGroupAddon>
       </InputGroup>
     </Field>
   );

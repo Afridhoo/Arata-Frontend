@@ -14,11 +14,13 @@ import { BsWhatsapp } from "react-icons/bs";
 import { LucideMail } from "lucide-react";
 import { DialogSimpleUse } from "./DialogSimpleUse";
 import { whatsappLink } from "@/Api/ApiWhatsApp";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function DisplayUser({ UserBooking, icon, nameTour }) {
+   const mobileCheck = useIsMobile();
   return (
     <div>
-      <Drawer swipeDirection="right">
+      <Drawer swipeDirection={mobileCheck ? "down" : "right"}>
         <DrawerTrigger
           render={<Button variant="default"> User Booking {icon}</Button>}
         />

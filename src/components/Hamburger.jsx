@@ -24,48 +24,65 @@ import {
   FieldTitle,
 } from "@/components/ui/field";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { LucideListCollapse } from "lucide-react";
+import {
+  LucideBell,
+  LucideHeart,
+  LucideHistory,
+  LucideListCollapse,
+  LucideLogOut,
+  LucideUserRoundCog,
+  LucideUsers2,
+} from "lucide-react";
+import { useAuth } from "@/utils/AuthContext";
+import AvatarSimpleUse from "./AvatarSimpleUse";
+import { BadgeSimpleUse } from "./BadgeSimpleUse";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const deliveryTimes = [
   {
-    value: "asap",
-    id: "delivery-asap",
-    label: "Standard delivery",
-    description: "25–35 min · Driver assigned now",
-    badge: "Fastest",
+    value: "/AccountMe",
+    label: "Halaman Profil",
+    icon: <LucideUsers2 />,
   },
   {
-    value: "5-00",
-    id: "delivery-5-00",
-    label: "5:00 PM – 5:15 PM",
-    description: "Prep starts at 4:45 PM",
+    value: "/notification",
+    label: "Notifikasi",
+    icon: <LucideBell />,
   },
   {
-    value: "5-30",
-    id: "delivery-5-30",
-    label: "5:30 PM – 5:45 PM",
-    description: "Good if you're heading home",
+    value: "/favorite",
+    label: "Favorite",
+    icon: <LucideHeart />,
   },
   {
-    value: "6-00",
-    id: "delivery-6-00",
-    label: "6:00 PM – 6:15 PM",
-    description: "Most popular · High demand",
+    value: "/services",
+    label: "Hubungi Admin",
+    icon: <LucideUserRoundCog />,
   },
   {
-    value: "6-30",
-    id: "delivery-6-30",
-    label: "6:30 PM – 6:45 PM",
-    description: "Last slot before kitchen closes",
+    value: "/tripMe",
+    label: "Histori Perjalanan",
+    icon: <LucideHistory />,
+  },
+  {
+    value: "logout",
+    label: "Log Out",
+    icon: <LucideLogOut />,
   },
 ];
 
-export default function Hamburger({navItems}) {
+export default function Hamburger() {
   const [open, setOpen] = React.useState(false);
-  const [deliveryTime, setDeliveryTime] = React.useState("asap");
   const isMobile = useIsMobile();
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  const { name, photo } = user || {};
 
-  
+  function handleNavigate(path) {
+    navigate(path);
+    setOpen(false);
+  }
 
   return (
     <Drawer
@@ -86,40 +103,28 @@ export default function Hamburger({navItems}) {
       />
       <DrawerContent>
         <DrawerHeader>
-          <DrawerTitle>Cari Halaman Yang Ingin Anda Kunjungi</DrawerTitle>
-          <DrawerDescription>
-            
-          </DrawerDescription>
+          <DrawerTitle className="flex items-center gap-2">
+            <AvatarSimpleUse photo={photo} size={"small"} isActive={true} />
+            Haloo {name}
+          </DrawerTitle>
+          <DrawerDescription></DrawerDescription>
         </DrawerHeader>
         <div className="flex-1 scroll-fade overflow-y-auto p-4">
-          <RadioGroup
-            value={deliveryTime}
-            onValueChange={setDeliveryTime}
-            className="gap-2"
-          >
-            {deliveryTimes.map((time) => (
-              <FieldLabel key={time.value} htmlFor={time.id}>
+          <RadioGroup className="gap-2">
+            {deliveryTimes.map((time, idx) => (
+              <FieldLabel key={idx} onClick={() => handleNavigate(time.value)}>
                 <Field orientation="horizontal">
                   <FieldContent>
-                    <FieldTitle className="flex items-center gap-2">
+                    <FieldTitle className="flex items-center gap-2 ">
+                      <BadgeSimpleUse variant={"outline"} icon={time.icon} />
                       {time.label}
-                      {time.badge ? (
-                        <Badge variant="secondary">{time.badge}</Badge>
-                      ) : null}
                     </FieldTitle>
-                    <FieldDescription>{time.description}</FieldDescription>
                   </FieldContent>
-                  <RadioGroupItem value={time.value} id={time.id} />
                 </Field>
               </FieldLabel>
             ))}
           </RadioGroup>
         </div>
-        {/* <DrawerFooter>
-          <Button onClick className="h-[34px]">
-            Confirm Delivery Time
-          </Button>
-        </DrawerFooter> */}
       </DrawerContent>
     </Drawer>
   );

@@ -11,11 +11,11 @@ export default function ListLocations({
 }) {
   return (
     <>
-      <div className="flex items-center gap-2 border-b border-emerald-100 pb-2.5 mb-2.5">
-        <LucideMapPinCheckInside />
+      <div className="flex items-center gap-2 border-b border-emerald-100 md:pb-2.5 md:mb-2.5">
+        <LucideMapPinCheckInside className="hidden md:flex" />
 
         <div>
-          <h3 className="text-sm font-bold text-gray-900">{headerText}</h3>
+          <h3 className="text-xs md:text-sm font-bold text-gray-900">{headerText}</h3>
           <p className="text-[10px] text-gray-700">{subText}</p>
         </div>
       </div>
@@ -39,7 +39,7 @@ export default function ListLocations({
               <div
                 className={`${cheking ? " text-gray-800  " : "text-gray-400 "}`}
               >
-                <span className="font-semibold  text-sm">{idx + 1}</span>
+                <span className="font-semibold text-xs md:text-sm">{idx + 1}</span>
               </div>
               <div className="grid">
                 <span

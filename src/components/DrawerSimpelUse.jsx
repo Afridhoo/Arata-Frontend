@@ -21,6 +21,7 @@ import {
 import { BadgeSimpleUse } from "./BadgeSimpleUse";
 import { formatDateId } from "@/utils/convertDate";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export function DrawerSimpelUse({
   setValue,
@@ -35,9 +36,14 @@ export function DrawerSimpelUse({
   noPt,
 }) {
   const [open, setOpen] = React.useState(false);
+  const mobileCheck = useIsMobile();
 
   return (
-    <Drawer open={open} onOpenChange={setOpen} swipeDirection="right">
+    <Drawer
+      open={open}
+      onOpenChange={setOpen}
+      swipeDirection={mobileCheck ? "down" : "right"}
+    >
       <DrawerTrigger
         render={
           <Button size="lg" className="cursor-pointer">
@@ -62,10 +68,14 @@ export function DrawerSimpelUse({
                 <FieldLabel className="cursor-pointer">
                   <Field orientation="horizontal">
                     <FieldContent>
-                      <FieldTitle className="flex items-center gap-2">
+                      <FieldTitle className="flex items-center gap-2 ">
                         {el.description}
                       </FieldTitle>
-                      <FieldDescription>{el.address}</FieldDescription>
+                      <FieldDescription
+                        className={mobileCheck && "max-w-40 truncate"}
+                      >
+                        {el.address}
+                      </FieldDescription>
                       <FieldDescription>
                         <BadgeSimpleUse
                           variant={"outline"}
@@ -85,7 +95,7 @@ export function DrawerSimpelUse({
                     )}
 
                     {isActiveTripTour && !isFinishTour && (
-                      <span>
+                      <div>
                         {el.status === "ongoing" && (
                           <BadgeSimpleUse
                             desc={"Dituju"}
@@ -101,7 +111,7 @@ export function DrawerSimpelUse({
                         {el.status === "pending" && (
                           <BadgeSimpleUse desc={"Pending"} />
                         )}
-                      </span>
+                      </div>
                     )}
                     <RadioGroupItem value={el.coordinates} />
                   </Field>

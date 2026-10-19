@@ -22,6 +22,7 @@ import calcDistanceDuration from "@/utils/calcDistanceDuration";
 import { Badge } from "./ui/badge";
 
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export function DrawerForBusLocation({
   Line,
@@ -41,8 +42,10 @@ export function DrawerForBusLocation({
   const calcDurationRute =
     distance && duration && calcDistanceDuration({ distance, duration });
 
+ const mobileCheck = useIsMobile();
+
   return (
-    <Drawer open={open} onOpenChange={setOpen} swipeDirection="right">
+    <Drawer open={open} onOpenChange={setOpen} swipeDirection={mobileCheck ? "down" : "right"}>
       <DrawerTrigger
         render={
           <Button size="lg" className="cursor-pointer">

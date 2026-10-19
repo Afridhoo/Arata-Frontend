@@ -10,7 +10,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import {LucideLocationEdit } from "lucide-react";
+import { LucideLocationEdit } from "lucide-react";
 import AvatarSimpleUse from "./AvatarSimpleUse";
 
 // const data = {
@@ -130,11 +130,11 @@ import AvatarSimpleUse from "./AvatarSimpleUse";
 //   ],
 // };
 
-import img from "../assets/LogoWebsite.png"
+import img from "../assets/LogoWebsite.png";
 
 export function AppSidebar({ navMain, user }) {
   return (
-    <Sidebar collapsible="offcanvas" className={'pl-1'}>
+    <Sidebar collapsible="offcanvas" className={"pl-1"}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -142,11 +142,12 @@ export function AppSidebar({ navMain, user }) {
               asChild
               className="data-[slot=sidebar-menu-button]:p-1.5!"
             >
-             
-            
-                <AvatarSimpleUse photo={img} noBage={true} size={'sm'} isActive={true}/>
-  
-             
+              <AvatarSimpleUse
+                photo={img}
+                noBage={true}
+                size={"sm"}
+                isActive={true}
+              />
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

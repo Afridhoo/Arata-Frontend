@@ -42,7 +42,7 @@ export default function UpdateAccount() {
   }
 
   return (
-    <div className="mx-auto w-5xl  flex   gap-5  h-screen overflow-y-auto">
+    <div className="flex justify-center gap-10 flex-wrap">
       <FormLayout
         User={User}
         onSubmit={onSubmitInfo}

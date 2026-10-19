@@ -148,14 +148,14 @@ export default function RenderMapAllTrip({
 
   return (
     <div
-      className={`overflow-hidden w-full  h-full ${
+      className={`overflow-hidden h-130 md:w-full  md:h-full ${
         isFullMap
           ? "fixed inset-0 z-[20]  rounded-none"
           : "relative z-[1]  rounded-xl border border-gray-200"
       }`}
     >
       <div
-        className={`w-full  ${isFullMap ? "h-full" : "h-[650px]"} border border-emerald-100 rounded-2xl overflow-hidden shadow-2xl bg-slate-50 `}
+        className={`w-full  ${isFullMap ? "md:h-full" : "h-[650px]"} border border-emerald-100 rounded-2xl overflow-hidden shadow-2xl bg-slate-50 `}
       >
         <MapContainer
           style={{ height: "100%", width: "100%" }}
@@ -263,7 +263,7 @@ export default function RenderMapAllTrip({
         </MapContainer>
       </div>
       <div
-        className={`bg-white/90 left-6 bottom-10 absolute z-[9999] backdrop-blur-sm rounded-xl border border-emerald-100 shadow-xl p-4 flex flex-col max-h-60 overflow-y-auto`}
+        className={`bg-white/90 left-2 md:left-6 md:bottom-10 bottom-1 absolute z-[9999] backdrop-blur-sm rounded-xl border border-emerald-100 shadow-xl p-2 md:p-4 flex flex-col max-h-60 overflow-y-auto`}
       >
         <ListLocations
           handleClickStart={handleRefStartLocations}
@@ -278,12 +278,12 @@ export default function RenderMapAllTrip({
         onClick={() => {
           isFullMap ? setIsFullMap(null) : setIsFullMap(true);
         }}
-        className={`bg-white/90 ${isFullMap ? "left-9" : "left-10"} top-10 absolute z-[9999] backdrop-blur-sm rounded-xl border border-emerald-100 shadow-xl p-4  max-h-60 `}
+        className={`bg-white/90 ${isFullMap ? "left-7 md:left-9" : "left-8 md:left-10"} top-15  md:top-10 hidden md:absolute z-[9999] backdrop-blur-sm rounded-xl border border-emerald-100 shadow-xl p-4  max-h-60 `}
       >
         {isFullMap ? <FiX /> : <FiMaximize />}
       </span>
 
-      <div className="z-[9999] cursor-pointer absolute top-10  right-1  ">
+      <div className="z-[9999]  max-w-full overflow-x-auto cursor-pointer absolute top-10  right-1  ">
         <div className="grid gap-3">
           <span className="flex gap-2">
             {LineRoad && (

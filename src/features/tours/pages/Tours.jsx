@@ -68,7 +68,7 @@ export default function Tours() {
                     className="w-full h-full  object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
                 )}
-                <div className=" absolute  top-6 right-6">
+                <div className=" absolute  md:top-6 top-2 right-1  md:right-6">
                   {User ? (
                     <HoverCardUse
                       Render={
@@ -163,19 +163,21 @@ export default function Tours() {
                         {el.ratingsAverage}
                       </span>
                       <AiFillStar className="text-amber-400 text-sm" />
-                      <span className=" text-xs text-gray-500 font-medium ml-1">
-                        ({el.ratingsQuantity} Ulasan)
+                      <span className=" text-xs text-gray-500 font-medium ml-1 flex items-center gap-1">
+                        <LucideUserCheck2 className="w-4 " />
+
+                        <span>{el.ratingsQuantity}</span>
                       </span>
                     </p>
                   </div>
                 </div>
                 {el.soldOut ? (
-                  <span className="md:font-bold text-xs py-1 px-1 text-center md:text-xs text-gray-500 md:px-4 md:py-2 bg-gray-100 rounded-full border border-gray-200 tracking-wider">
+                  <Button variant="outline" className={"text-xs md:text-sm  "}>
                     SOLD OUT
-                  </span>
+                  </Button>
                 ) : (
                   <Link to={`/tour/${el._id}`}>
-                    <Button>Detail</Button>
+                    <Button className={"cursor-pointer"}>Detail</Button>
                   </Link>
                 )}
               </footer>

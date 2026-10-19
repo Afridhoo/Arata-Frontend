@@ -14,17 +14,17 @@ import AvatarSimpleUse from "./AvatarSimpleUse";
 import { AccordionLocationsInDrawer } from "./AccordionLocationsInDrawer";
 import { DialogSimpleUse } from "./DialogSimpleUse";
 import { whatsappLink } from "@/Api/ApiWhatsApp";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export function DrawerGuide({
   title,
   guide = [],
   textDisplay = "Lihat Pemandu",
 }) {
-
-    
+  const mobileCheck = useIsMobile();
 
   return (
-    <Drawer swipeDirection="right">
+    <Drawer swipeDirection={mobileCheck ? "down" : "right"}>
       <DrawerTrigger
         render={
           <Button>
@@ -41,7 +41,7 @@ export function DrawerGuide({
           </DrawerDescription>
         </DrawerHeader>
         <div className="flex-1 p-4 pt-0 mt-5 overflow-x-auto max-h-full bg-muted rounded-4xl">
-          <div >
+          <div>
             {guide?.map((el, i) => {
               const { guideIdentity, destHandle } = el || {};
 
@@ -74,7 +74,7 @@ export function DrawerGuide({
                   </div>
 
                   <div className="pt-3">
-                    <AccordionLocationsInDrawer locations={destHandle} />
+                    <AccordionLocationsInDrawer locations={destHandle}  noDesc={mobileCheck}/>
                   </div>
                 </div>
               );

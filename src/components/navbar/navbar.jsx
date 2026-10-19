@@ -48,7 +48,6 @@ export default function Navbar() {
         <MobileNavbar navItems={getNavDefaultRender} navMobile={navMobile} />
       </nav>
 
-      {/* Main Content Area */}
       <main className={!isMobile ? "pt-24" : "pt-5"}>
         <Outlet />
       </main>

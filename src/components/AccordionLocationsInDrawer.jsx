@@ -8,7 +8,7 @@ import AvatarSimpleUse from "./AvatarSimpleUse";
 import { formatDateId } from "@/utils/convertDate";
 import BadgePerStatusLocations from "./BadgePerStatusLocations";
 
-export function AccordionLocationsInDrawer({ locations }) {
+export function AccordionLocationsInDrawer({ locations, noDesc }) {
   return (
     <Accordion className="max-w-lg ">
       {locations.map((el, idx) => {
@@ -21,8 +21,11 @@ export function AccordionLocationsInDrawer({ locations }) {
             key={_id}
             className=" border-b px-4 last:border-b-0"
           >
-            <AccordionTrigger className={"cursor-pointer flex gap-2 items-center"}>
+            <AccordionTrigger
+              className={"cursor-pointer flex gap-2 items-center"}
+            >
               <span className="text-gray-400 font-bold text-xs">{idx + 1}</span>
+
               <span>{description}</span>
             </AccordionTrigger>
             <AccordionContent>
@@ -34,7 +37,9 @@ export function AccordionLocationsInDrawer({ locations }) {
                     photo={image}
                   />
                   <div className="grid gap-1">
-                    <span className="text-xs text-gray-600">{address}</span>
+                    {!noDesc && (
+                      <span className="text-xs text-gray-600">{address}</span>
+                    )}
                     <div className="mt-3 gap-2 flex items-center">
                       <BadgePerStatusLocations status={status} />
                       <span className=" font-semibold text-xs">

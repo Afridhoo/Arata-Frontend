@@ -35,13 +35,13 @@ export default function Profil() {
     User || {};
   const { booking, review, guideReview, getGuideHandle } = StatsUser || {};
 
-  const joinDate = createAt ? formatDateId(createAt) : "—";
+  const joinDate = createAt ? formatDateId(createAt , true) : "—";
 
   return (
     <div className="mx-auto max-w-5xl space-y-6 p-4 sm:p-6 lg:p-8">
       {/* Header Profile Hero Card */}
-      <header className="relative overflow-hidden rounded-3xl bg-white p-6 sm:p-8 border border-[#e5e5e7] shadow-xs">
-        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+      <header className=" md:w-full w-40 m-auto mb-5 relative overflow-hidden rounded-3xl bg-white p-6  border border-[#e5e5e7] shadow-xs">
+        <div className=" flex flex-col sm:flex-row items-center sm:items-start gap-6">
           <div className="shrink-0 p-1 rounded-full bg-[#f5f5f7] border border-gray-200/80">
             <AvatarSimpleUse photo={photo} isActive={true} size="lg" />
           </div>
@@ -49,19 +49,19 @@ export default function Profil() {
           <div className="flex-1 text-center sm:text-left space-y-3">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <p className="text-xs font-semibold tracking-wider text-[#6e6e73] uppercase mb-1">
+                <p className=" text-xs font-semibold tracking-wider text-[#6e6e73] uppercase mb-1">
                   Profil Saya
                 </p>
-                <h1 className="text-2xl sm:text-3xl font-semibold text-[#1d1d1f] tracking-tight">
+                <h1 className="md:text-2xl text-sm font-semibold text-[#1d1d1f] tracking-tight">
                   {name}
                 </h1>
               </div>
 
               {/* Role & Status Badges */}
-              <div className="flex flex-wrap items-center justify-center sm:justify-end gap-2">
+              <div className=" hidden md:flex flex-wrap items-center justify-center sm:justify-end gap-2">
                 <BadgeSimpleUse
                   desc={role ? role.toUpperCase() : "—"}
-                  style="bg-[#1d1d1f] text-white hover:bg-black font-medium px-3.5 py-1 rounded-full text-xs"
+                  style="bg-[#1d1d1f] text-white hover:bg-black font-medium md:px-3.5 md:py-1 rounded-full text-xs"
                 />
                 <BadgeSimpleUse
                   desc={`Bergabung : ${joinDate}`}
@@ -83,7 +83,7 @@ export default function Profil() {
         />
         <StatCard
           icon={<FiStar className="text-base text-[#1d1d1f]" />}
-          label="Rating Diberikan"
+          label="Review Tour"
           value={review ?? "—"}
         />
         <StatCard
@@ -102,7 +102,7 @@ export default function Profil() {
 
       {/* Main Details Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Information Section 1: Informasi Pribadi */}
+       
         <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#e5e5e7] shadow-xs">
           <div className="flex items-center gap-3.5 pb-4 mb-5 border-b border-gray-200/80">
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#f5f5f7] text-[#1d1d1f]">
@@ -118,7 +118,7 @@ export default function Profil() {
             </div>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-3 ">
             <InfoRow icon={<FiUser />} label="Nama Lengkap" value={name} />
             <InfoRow icon={<FiMail />} label="Alamat Email" value={email} />
             <InfoRow

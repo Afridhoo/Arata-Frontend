@@ -13,14 +13,14 @@ export function NavbarItems(isUserNotLogin) {
       name: "Home",
       path: "/",
       render: true,
-      icon: <LucideHome />,
+      icon: <LucideHome size={16} />,
       mobile: true,
     },
     {
       name: "Tour",
       path: "/tours",
       render: true,
-      icon: <LucideMapPin />,
+      icon: <LucideMapPin size={16} />,
       mobile: true,
     },
 
@@ -28,14 +28,14 @@ export function NavbarItems(isUserNotLogin) {
       name: "Booking",
       path: "/booking",
       render: isUserNotLogin,
-      icon: <LucideTags />,
+      icon: <LucideTags size={16} />,
       mobile: true,
     },
     {
       name: "Perjalanan",
       path: "/trip",
       render: isUserNotLogin,
-      icon: <LucideNavigation />,
+      icon: <LucideNavigation size={16} />,
       mobile: true,
     },
 
@@ -43,13 +43,13 @@ export function NavbarItems(isUserNotLogin) {
       name: "Histori",
       path: "/tripMe",
       render: isUserNotLogin,
-      icon: <LucideMapPinCheckInside />,
+      icon: <LucideMapPinCheckInside size={16} />,
     },
     {
       name: "Services",
       path: "/services",
       render: true,
-      icon: <LucideContact2 />,
+      icon: <LucideContact2 size={16} />,
     },
   ];
 
