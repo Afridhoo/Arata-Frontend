@@ -119,7 +119,7 @@ export default function Review({
 
             <Textarea
               placeholder="Ceritakan pengalaman Anda selama perjalanan..."
-              className="min-h-[120px] w-[400px] max-w-[550px]   resize-none  p-6 pl-2 pb-0  border-gray-400"
+              className="md:min-h-[120px] h-20 w-50 md:w-[400px] max-w-[550px]   resize-none  md:p-6 pl-2 pb-0  border-gray-400"
               value={review}
               onChange={(e) => setReview(e.target.value)}
             />

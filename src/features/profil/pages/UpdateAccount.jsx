@@ -42,7 +42,7 @@ export default function UpdateAccount() {
   }
 
   return (
-    <div className="flex justify-center gap-10 flex-wrap">
+    <div className="flex flex-wrap justify-center items-start gap-10">
       <FormLayout
         User={User}
         onSubmit={onSubmitInfo}

@@ -9,8 +9,8 @@ export default function TourGuideHandleDistLocation({
   noBadge,
 }) {
   return (
-    <section className=" ">
-      <div className="mb-7 text-gray-400 tracking-wider">
+    <section >
+      <div className="mb-7 mt-20 md:mt-0 text-gray-400 tracking-wider">
         <h2 className="font-semibold uppercase tracking-wider text-[13px]  text-gray-400 flex items-center gap-3 mb-1">
           <span>Pemandu Ditugaskan Wisata</span>
         </h2>
@@ -31,6 +31,7 @@ export default function TourGuideHandleDistLocation({
                   isActive={isActiveHandle}
                   photo={photo}
                   noBage={noBadge}
+                  size={"lg"}
                 />
 
                 <div>

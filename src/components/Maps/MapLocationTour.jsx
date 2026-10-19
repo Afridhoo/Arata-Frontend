@@ -20,6 +20,7 @@ import { UseGetLineRoad } from "@/admin/MonitoringAllTrip/UseGetTrip";
 import { DrawerForBusLocation } from "@/components/DrawerForBusLocation";
 import { LucideRoute } from "lucide-react";
 import { formatMarkerCoords } from "./FormatMarker";
+import { Button } from "../ui/button";
 
 export default function MapLocationTour({
   tour,
@@ -42,7 +43,6 @@ export default function MapLocationTour({
   const { destination = [], hotel = [] } = locations || {};
   const concatVal = [...destination, ...hotel];
 
-
   function handleClickMaps(coords, idLoc) {
     const getRefOn = refLocations.current[idLoc];
     setLocationActive(coords);
@@ -54,9 +54,9 @@ export default function MapLocationTour({
     setIsFullMap(true);
     if (!noRenderLine) {
       const getCoordsLoc = concatVal?.map((el) => el.coordinates);
-      if (!coordsBus) InsertLatlng({ coordinates: getCoordsLoc });
-      if (coordsBus)
-        InsertLatlng({ coordinates: getCoordsLoc, coordsBus: coordsBus });
+      // if (!coordsBus) InsertLatlng({ coordinates: getCoordsLoc });
+      // if (coordsBus)
+      // InsertLatlng({ coordinates: getCoordsLoc, coordsBus: coordsBus });
     }
   }
 
@@ -85,10 +85,10 @@ export default function MapLocationTour({
 
       <div className="flex flex-col lg:flex-row gap-8 items-start">
         <div
-          className={`overflow-hidden ${
+          className={` ${
             isFullMap
-              ? "fixed inset-0 z-[9] w-full h-full rounded-none"
-              : "relative z-[1] w-full lg:w-3/5 h-[480px] rounded-xl border border-gray-200"
+              ? "fixed inset-0 z-9   md:w-full md:h-full rounded-none"
+              : "relative z-[1] w-full  h-[350px] md:h-[480px] rounded-xl border border-gray-200"
           }`}
         >
           <MapContainer
@@ -106,59 +106,57 @@ export default function MapLocationTour({
                 <p>Full Map</p>
               </span>
             )}
-            {isFullMap && (
-              <span
-                className="z-[9999] flex items-center gap-2 cursor-pointer absolute top-20 left-5 px-4 py-2.5 rounded-lg bg-white shadow-sm border border-gray-200 text-gray-700 text-sm font-medium hover:bg-gray-50 transition-colors"
-                onClick={() => setIsFullMap(false)}
-              >
-                <BsXCircleFill className="w-3.5 h-3.5" />
-                <p>Tutup</p>
-              </span>
-            )}
 
             {isFullMap && (
-              <>
-                <span className="z-[9999] cursor-pointer absolute top-18 left-40 p-3 rounded-lg">
-                  <DrawerSimpelUse
-                    setValue={handleClickMaps}
-                    icon={<FiCamera />}
-                    isActiveTripTour={isActiveTripTour}
-                    RenderValue={destination}
-                    title={"List Lokasi Wisata"}
-                    description={"Perjalanan Yang Akan Di Ikuti Oleh Rombongan"}
-                    buttonText={"Lihat Wisata"}
-                    isActiveCoordinates={location}
-                    isFinishTour={dateFinished}
-                  />
-                </span>
-                <span className="z-[999] cursor-pointer absolute top-18 left-73 p-3 rounded-lg">
-                  <DrawerSimpelUse
-                    setValue={handleClickMaps}
-                    icon={<FaHotel />}
-                    isActiveTripTour={isActiveTripTour}
-                    RenderValue={hotel}
-                    title={"List Penginapan"}
-                    isActiveCoordinates={location}
-                    isFinishTour={dateFinished}
-                    description={
-                      "Tempat Istirahat Rombongan Selama Tour Berjalan"
-                    }
-                    buttonText={"Lihat Hotel"}
-                  />
-                </span>
-              </>
-            )}
-            {isFullMap && LineRoad?.coordinatesBus?.line && (
-              <span className="z-[9999] cursor-pointer absolute top-18 left-105 p-3 rounded-lg">
-                <DrawerForBusLocation
-                  buttonText={"Rute Perjalanan"}
-                  icon={<LucideRoute />}
-                  Line={LineRoad}
-                  handleWayPoints={handleWayPoints}
-                  isActive={getWayPoints}
-                  title={nameObjectiveLocation}
-                />
-              </span>
+              <div className=" z-999  md:right-0 right-1 top-11  absolute md:top-18 md:left-10 md:p-3 ">
+                <div className="flex md:p-0 p-3 gap-5 ">
+                  <Button variant="outline" onClick={() => setIsFullMap(false)}>
+                    <BsXCircleFill className="w-3.5 h-3.5" />
+                    <p>Tutup</p>
+                  </Button>
+
+                  <div className="flex flex-wrap w-full gap-3 md:justify-normal justify-end  items-center">
+                    <DrawerSimpelUse
+                      setValue={handleClickMaps}
+                      icon={<FiCamera />}
+                      isActiveTripTour={isActiveTripTour}
+                      RenderValue={destination}
+                      title={"List Lokasi Wisata"}
+                      description={
+                        "Perjalanan Yang Akan Di Ikuti Oleh Rombongan"
+                      }
+                      buttonText={"Lihat Wisata"}
+                      isActiveCoordinates={location}
+                      isFinishTour={dateFinished}
+                    />
+
+                    <DrawerSimpelUse
+                      setValue={handleClickMaps}
+                      icon={<FaHotel />}
+                      isActiveTripTour={isActiveTripTour}
+                      RenderValue={hotel}
+                      title={"List Penginapan"}
+                      isActiveCoordinates={location}
+                      isFinishTour={dateFinished}
+                      description={
+                        "Tempat Istirahat Rombongan Selama Tour Berjalan"
+                      }
+                      buttonText={"Lihat Hotel"}
+                    />
+
+                    {isFullMap && LineRoad?.coordinatesBus?.line && (
+                      <DrawerForBusLocation
+                        buttonText={"Rute Perjalanan"}
+                        icon={<LucideRoute />}
+                        Line={LineRoad}
+                        handleWayPoints={handleWayPoints}
+                        isActive={getWayPoints}
+                        title={nameObjectiveLocation}
+                      />
+                    )}
+                  </div>
+                </div>
+              </div>
             )}
 
             {coordsBus && (
@@ -221,7 +219,7 @@ export default function MapLocationTour({
           </MapContainer>
         </div>
 
-        <div className="w-full lg:w-2/5 flex flex-col gap-8 h-[480px] overflow-y-auto">
+        <div className="w-full lg:w-2/5 hidden md:flex flex-col gap-8 h-[480px] overflow-y-auto">
           <RenderListLocationsMap
             title={"Wisata"}
             isFinishTour={dateFinished}

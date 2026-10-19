@@ -53,7 +53,9 @@ export function DrawerSimpelUse({
       />
       <DrawerContent>
         <DrawerHeader>
-          <DrawerTitle className={`${!noPt && "pt-20"}`}>{title}</DrawerTitle>
+          <DrawerTitle className={`${!noPt && !mobileCheck && "pt-20"}`}>
+            {title}
+          </DrawerTitle>
 
           <DrawerDescription>{description}</DrawerDescription>
         </DrawerHeader>

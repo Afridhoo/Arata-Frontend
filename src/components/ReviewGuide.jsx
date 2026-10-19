@@ -132,7 +132,7 @@ export default function ReviewGuide({
       </div>
 
       <form id="reviewGuide" onSubmit={handleSubmit(handleReview)}>
-        <div className="flex mt-10 items-center gap-10">
+        <div className="flex  flex-wrap mt-10 items-center gap-10">
           {guide?.map((el, idxG) => {
             const { name, photo, _id } = el.identity;
 
@@ -173,7 +173,7 @@ export default function ReviewGuide({
                   </span>
                 </div>
 
-                <div className="flex  justify-center items-center gap-1 mb-6 mt-2">
+                <div className="flex   justify-center items-center gap-1 mb-6 mt-2">
                   {[1, 2, 3, 4, 5].map((_, idx) => {
                     const checkStar =
                       idx + 1 <= isActiveStar?.find((e) => e.id === _id)?.num;
@@ -195,7 +195,7 @@ export default function ReviewGuide({
 
                 <Textarea
                   placeholder="Ceritakan pemandu kami , data anda kami privasi..."
-                  className="min-h-[100px] w-[200px] resize-none  text-center pt-7 border-gray-400"
+                  className="md:min-h-[100px] h-10 w-30 m-auto md:m-0 md:w-[200px] resize-none  text-center md:pt-7 border-gray-400"
                   {...register(_id)}
                   defaultValue={
                     dataGuideIsReview.length > 0

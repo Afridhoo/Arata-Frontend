@@ -40,7 +40,7 @@ export default function Profil() {
   return (
     <div className="mx-auto max-w-5xl space-y-6 p-4 sm:p-6 lg:p-8">
       {/* Header Profile Hero Card */}
-      <header className=" md:w-full w-40 m-auto mb-5 relative overflow-hidden rounded-3xl bg-white p-6  border border-[#e5e5e7] shadow-xs">
+      <header className=" md:w-full w-40  m-auto mb-5 relative overflow-hidden rounded-3xl bg-white p-6  border border-[#e5e5e7] shadow-xs">
         <div className=" flex flex-col sm:flex-row items-center sm:items-start gap-6">
           <div className="shrink-0 p-1 rounded-full bg-[#f5f5f7] border border-gray-200/80">
             <AvatarSimpleUse photo={photo} isActive={true} size="lg" />
@@ -84,12 +84,12 @@ export default function Profil() {
         <StatCard
           icon={<FiStar className="text-base text-[#1d1d1f]" />}
           label="Review Tour"
-          value={review ?? "—"}
+          value={review || "Review Kosong"}
         />
         <StatCard
           icon={<FiUserCheck className="text-base text-[#1d1d1f]" />}
           label="Review Pemandu"
-          value={guideReview ?? "—"}
+          value={guideReview || "Review Kosong"}
           small
         />
         <StatCard

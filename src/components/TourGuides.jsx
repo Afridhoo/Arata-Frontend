@@ -9,7 +9,7 @@ export default function TourGuides({ guide, privat, noBadge }) {
       <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-10">
         List Pemandu Tour
       </h2>
-      <div className="flex gap-24 items-start ">
+      <div className="flex flex-wrap gap-10 md:gap-24 items-start ">
         {guide?.map((el, idx) => {
           const {
             identity,
@@ -28,6 +28,7 @@ export default function TourGuides({ guide, privat, noBadge }) {
                   noBage={noBadge}
                   isActive={isActiveHandle}
                   photo={photo}
+                  size={isActiveHandle ? "lg" : "small"}
                 />
 
                 <div>

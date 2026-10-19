@@ -7,7 +7,7 @@ export default function RenderListQuickFastInfo({ Icon, title, value  , sizeValu
           {title}
         </p>
       </div>
-      <span className={`${sizeValue || "text-[16px]"} text-gray-800 font-semibold`}>{value}</span>
+      <span className={`md:text-lg text-sm text-gray-800 font-semibold`}>{value}</span>
     </div>
   );
 }

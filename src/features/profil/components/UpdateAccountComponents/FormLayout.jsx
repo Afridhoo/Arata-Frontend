@@ -11,7 +11,7 @@ export default function FormLayout({
   desc
 }) {
   return (
-    <div className="mb-6 max-h-[550px] overflow-hidden rounded-2xl border border-neutral-200 bg-white">
+    <div className="mb-6 max-h-[550px]   overflow-hidden rounded-2xl border border-neutral-200 bg-white">
       <div className="flex items-center gap-3 border-b border-neutral-100 px-6 py-5 sm:px-7">
         <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-neutral-200 bg-neutral-50 text-neutral-700">
           <Icon className="text-base" />

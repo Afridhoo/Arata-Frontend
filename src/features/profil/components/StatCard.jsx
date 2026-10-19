@@ -5,7 +5,7 @@ export default function StatCard({ icon, small, label, value }) {
         <span className="flex md:h-9 md:w-9 items-center justify-center rounded-xl  text-[#1d1d1f]">
           {icon}
         </span>
-        <p className=" w-20 md:w-full  truncate text-xs md:text-sm font-medium text-[#6e6e73]">
+        <p className=" w-20 md:w-full  truncate text-xs md:text-sm font-medium text-gray-600">
           {label}
         </p>
       </div>

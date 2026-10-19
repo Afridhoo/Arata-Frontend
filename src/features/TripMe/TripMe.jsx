@@ -35,13 +35,13 @@ import { toast } from "sonner";
 import { UserNotExist } from "@/components/UserNotExist";
 import { AccordionListTourLocations } from "@/components/AccordionListTourLocations";
 import { useAuth } from "@/utils/AuthContext";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function TripMe() {
   const { isUserNotLogin } = useAuth();
   const { data: Trip, isPending } = UseGetTripMe({ enabled: isUserNotLogin });
   const [isFullMap, setIsFullMap] = useState(null);
-
-  
+  const checkMobile = useIsMobile();
 
   if (!isUserNotLogin) return <UserNotExist />;
   if (isPending) return <NewLoading />;
@@ -173,7 +173,7 @@ export default function TripMe() {
               <span className="text-[26px] font-bold ">Perjalanan Anda</span>
             </div>
 
-            <div className="flex justify-between">
+            <div className="flex flex-wrap justify-between">
               <RenderListQuickFastInfo
                 Icon={<LucideCalendar1 width={18} />}
                 value={
@@ -181,7 +181,6 @@ export default function TripMe() {
                   `${formatDateId(date?.from, true)} ${getTime("startTime") || ""}`
                 }
                 title={"Keberangkatan Tour"}
-                sizeValue={"text-[18px]"}
               />
               <RenderListQuickFastInfo
                 Icon={<LucideCalendar1 width={18} />}
@@ -190,7 +189,6 @@ export default function TripMe() {
                   `${formatDateId(date?.to, true)} ${getTime("endTime") || ""}`
                 }
                 title={"Selesai Tour"}
-                sizeValue={"text-[18px]"}
               />
               <RenderListQuickFastInfo
                 Icon={<LucideImageUp width={18} />}
@@ -198,18 +196,16 @@ export default function TripMe() {
                   uploadAt ? formatDateId(uploadAt) : "Belum Di Update Pemandu"
                 }
                 title={"Dokumentasi Diupdate"}
-                sizeValue={"text-[18px]"}
-              />{" "}
+              />
               <RenderListQuickFastInfo
                 Icon={<LucideBus width={18} />}
-                sizeValue={"text-[18px]"}
                 value={description || "Belum Di Tetapkan Pemandu"}
                 title={"Lokasi Dituju"}
               />
             </div>
           </div>
 
-          <div className="flex justify-between mt-15 border-b pb-10">
+          <div className="flex  flex-wrap justify-between  mt-15 border-b pb-10">
             <div>
               <div>
                 <h2 className="font-semibold uppercase tracking-wider text-[13px]  text-gray-400 flex items-center gap-3 mb-1">
@@ -218,51 +214,41 @@ export default function TripMe() {
                 <span className="text-[26px] font-bold">Lokasi Tujuan</span>
               </div>
 
-              <div className="flex items-center  gap-20 ">
-                <div>
-                  <div className="grid gap-5">
-                    <RenderListQuickFastInfo
-                      Icon={<LucideClock width={18} />}
-                      value={`${duration} Hari`}
-                      title={"Durasi"}
-                    />
-                    <RenderListQuickFastInfo
-                      Icon={<LucideUser width={18} />}
-                      value={`${maxGroupSize - slot} / ${maxGroupSize}`}
-                      title={"User Booking"}
-                    />
-                  </div>
-                </div>
+              <div className=" grid grid-cols-2 md:grid-cols-3 gap-10  ">
+                <RenderListQuickFastInfo
+                  Icon={<LucideClock width={18} />}
+                  value={`${duration} Hari`}
+                  title={"Durasi"}
+                />
+                <RenderListQuickFastInfo
+                  Icon={<LucideUser width={18} />}
+                  value={`${maxGroupSize - slot} / ${maxGroupSize}`}
+                  title={"User Booking"}
+                />
 
-                <div className="grid gap-5">
-                  <RenderListQuickFastInfo
-                    Icon={<LucideUserLock width={18} />}
-                    value={`${formatFinalGuide?.length} Orang`}
-                    title={"Pemandu"}
-                  />
+                <RenderListQuickFastInfo
+                  Icon={<LucideUserLock width={18} />}
+                  value={`${formatFinalGuide?.length} Orang`}
+                  title={"Pemandu"}
+                />
 
-                  <RenderListQuickFastInfo
-                    Icon={<LucideCamera width={18} />}
-                    value={`${getImgDocumentation?.length} Gambar`}
-                    title={"Dokumentasi"}
-                  />
-                </div>
+                <RenderListQuickFastInfo
+                  Icon={<LucideCamera width={18} />}
+                  value={`${getImgDocumentation?.length} Gambar`}
+                  title={"Dokumentasi"}
+                />
 
-                <div>
-                  <div className="grid gap-5">
-                    <RenderListQuickFastInfo
-                      Icon={<LucideMapPin width={18} />}
-                      value={`${destination?.length} Lokasi`}
-                      title={" Wisata"}
-                    />
+                <RenderListQuickFastInfo
+                  Icon={<LucideMapPin width={18} />}
+                  value={`${destination?.length} Lokasi`}
+                  title={" Wisata"}
+                />
 
-                    <RenderListQuickFastInfo
-                      Icon={<LucideHotel width={18} />}
-                      value={`${hotel?.length} Tempat`}
-                      title={"Akomodasi"}
-                    />
-                  </div>
-                </div>
+                <RenderListQuickFastInfo
+                  Icon={<LucideHotel width={18} />}
+                  value={`${hotel?.length} Tempat`}
+                  title={"Akomodasi"}
+                />
               </div>
             </div>
             {getGuideHandle?.length > 0 && (
@@ -281,7 +267,7 @@ export default function TripMe() {
             <TourGuides guide={formatFinalGuide} privat={true} />
           </div>
 
-          <div className="mt-18">
+          <div className="mt-18 hidden md:flex">
             <AccordionListTourLocations locations={getFinalLoc} />
           </div>
 
@@ -329,7 +315,7 @@ export default function TripMe() {
             </div>
           )}
 
-          <div className="grid  mt-15">
+          <div className=" mt-15">
             <ReviewGuide
               guide={formatFinalGuide}
               dataGuideIsReview={getGuideReview}
@@ -338,7 +324,7 @@ export default function TripMe() {
               checkTourNotOnGoing={checkTourNotOnGoing}
             />
             <Review
-              activeAccordion={true}
+              activeAccordion={!checkMobile && true}
               idTour={idTour}
               idBooking={idBooking}
               img={imageCover}
