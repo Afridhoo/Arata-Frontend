@@ -44,7 +44,7 @@ export default function Navbar() {
         />
       </nav>
 
-      <nav className="sm:hidden  ">
+      <nav className={"sm:hidden"}>
         <MobileNavbar navItems={getNavDefaultRender} navMobile={navMobile} />
       </nav>
 

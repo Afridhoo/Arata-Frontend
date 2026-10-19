@@ -18,6 +18,7 @@ import { useState } from "react";
 import FilterList from "../components/FilterList";
 
 import { GetParams } from "../components/Params";
+import { Button } from "@/components/ui/button";
 
 export default function Tours() {
   const [pagination, setPagination] = useState(1);
@@ -46,25 +47,25 @@ export default function Tours() {
   return (
     <div className="min-h-screen bg-white">
       <div className="p-5 mb-5 pt-2 border-b border-gray-200">
-        <div className="flex gap-2 justify-end">
+        <div className="flex gap-2 md:justify-end">
           <FilterList params={params} categories={categories} route={"tours"} />
         </div>
       </div>
 
-      <div className="grid mb-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-8 pb-16 max-w-7xl mx-auto">
+      <div className="grid mb-10 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-8 pb-16  max-w-7xl mx-auto">
         {tour?.map((el, idx) => {
           const cheking = Favorite?.some((x) => x.tour === el?._id);
 
           return (
             <article
               key={idx}
-              className={`bg-white rounded-2xl shadow-sm  duration-300 flex flex-col overflow-hidden border border-gray-200 ${el.soldOut && "opacity-75 grayscale-[0.2]"}`}
+              className={`bg-white  h-fit md:h-full   rounded-2xl shadow-sm  duration-300 flex flex-col overflow-hidden border border-gray-200 ${el.soldOut && "opacity-75 grayscale-[0.2]"}`}
             >
-              <header className="relative h-50 group overflow-hidden bg-gray-100">
+              <header className="relative h-30 md:h-50 group overflow-hidden bg-gray-100">
                 {el.imageCover && (
                   <img
                     src={el.imageCover}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    className="w-full h-full  object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
                 )}
                 <div className=" absolute  top-6 right-6">
@@ -92,12 +93,12 @@ export default function Tours() {
                 </div>
               </header>
 
-              <div className="p-6 flex-grow flex flex-col">
-                <span className="text-[20px] font-semibold mb-5">
+              <div className="md:p-6 p-3    flex flex-col">
+                <span className="md:text-[20px]  max-w-full line-clamp-2 text-sm font-semibold md:mb-5">
                   {el.name}
                 </span>
 
-                <div className="grid grid-cols-2 gap-y-4 gap-x-2 text-sm text-gray-700 mt-auto">
+                <div className="hidden md:grid grid-cols-2 gap-y-4 gap-x-2 text-sm text-gray-700 mt-auto">
                   <div className="flex items-center gap-2">
                     <FiClock className="text-gray-400 text-lg flex-shrink-0" />
                     <span className="truncate font-medium">
@@ -146,36 +147,35 @@ export default function Tours() {
                 </div>
               </div>
 
-              <footer className="bg-gray-50/50 p-6 border-t border-gray-100 flex items-center justify-between">
+              <footer className="bg-gray-50/50 md:p-6 p-3  border-t border-gray-100 flex items-center justify-between flex-wrap gap-5">
                 <div className="flex flex-col">
-                  <p className="text-gray-900 flex items-baseline gap-1">
-                    <span className="font-bold text-xl">
+                  <p className="text-gray-900 flex  items-baseline gap-1">
+                    <span className="md:font-bold md:text-xl font-semibold text-sm  ">
                       {formatCurrencyId(el?.price)}
                     </span>
-                    <span className="text-xs text-gray-500 font-medium uppercase tracking-wide">
+                    <span className="hidden md:block text-xs text-gray-500 font-medium uppercase tracking-wide">
                       / org
                     </span>
                   </p>
-                  <p className="text-gray-600 flex items-center gap-1 mt-1">
-                    <span className="font-bold text-gray-900 text-sm">
-                      {el.ratingsAverage}
-                    </span>
-                    <AiFillStar className="text-amber-400 text-sm" />
-                    <span className="text-xs text-gray-500 font-medium ml-1">
-                      ({el.ratingsQuantity} Ulasan)
-                    </span>
-                  </p>
+                  <div className="flex flex-wrap md:max-w-full max-w-20">
+                    <p className="text-gray-600 flex items-center gap-1 mt-1">
+                      <span className="font-bold text-gray-900 text-sm">
+                        {el.ratingsAverage}
+                      </span>
+                      <AiFillStar className="text-amber-400 text-sm" />
+                      <span className=" text-xs text-gray-500 font-medium ml-1">
+                        ({el.ratingsQuantity} Ulasan)
+                      </span>
+                    </p>
+                  </div>
                 </div>
                 {el.soldOut ? (
-                  <span className="font-bold text-xs text-gray-500 px-4 py-2 bg-gray-100 rounded-full border border-gray-200 tracking-wider">
+                  <span className="md:font-bold text-xs py-1 px-1 text-center md:text-xs text-gray-500 md:px-4 md:py-2 bg-gray-100 rounded-full border border-gray-200 tracking-wider">
                     SOLD OUT
                   </span>
                 ) : (
-                  <Link
-                    to={`/tour/${el._id}`}
-                    className="bg-gray-900 hover:bg-gray-800 text-white font-medium text-sm py-2 px-6 rounded-full transition-all duration-300 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
-                  >
-                    Detail
+                  <Link to={`/tour/${el._id}`}>
+                    <Button>Detail</Button>
                   </Link>
                 )}
               </footer>

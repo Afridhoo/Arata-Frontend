@@ -28,8 +28,8 @@ export default function ListGuideHome({ DataGuide }) {
   );
 
   return (
-    <section className="w-full py-10">
-      <div className="md:mt-0 mt-20">
+    <section className="w-full md:py-10">
+      <div >
         <HeaderPerItem
           title={"Pemandu Tour Kami"}
           desc={

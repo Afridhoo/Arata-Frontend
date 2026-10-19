@@ -88,7 +88,7 @@ export default function Tesimonial({ TESTIMONIALS }) {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <div className="flex items-center right-10   top-70  absolute  bg-red-500">
+        <div className=" flex items-center right-10    top-70  md:absolute hidden  bg-red-500">
           <CarouselPrevious className={"w-[40px] h-[40px] cursor-pointer  "} />
           <CarouselNext className={"w-[40px] h-[40px] cursor-pointer"} />
         </div>

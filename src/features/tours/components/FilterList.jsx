@@ -82,8 +82,6 @@ export default function FilterList({
     navigate(
       `/${route}?${HandleQuery({ name: searchQuery, ...filter, rangeNumber })}`,
     );
-
-    
   }
 
   function handleResetFilter() {
@@ -96,8 +94,6 @@ export default function FilterList({
       { text: "Booking Terdikit", value: "booking+1", check: "booking" },
     ],
   };
-
-  
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -116,7 +112,9 @@ export default function FilterList({
         <LucideFilter size={12} /> Filter
       </SheetTrigger>
 
-      <SheetContent className={`${!noPaddingTop && "pt-20"} overflow-x-auto`}>
+      <SheetContent
+        className={`${!noPaddingTop && "md:pt-20"} overflow-x-auto`}
+      >
         <SheetHeader>
           <SheetTitle>Cari Tour Dan Filter</SheetTitle>
           <SheetDescription>
@@ -158,9 +156,11 @@ export default function FilterList({
           </div>
 
           <div>
-            <Label htmlFor="search" className={"mb-4 mt-5"}>
-              Pilih Rentang Harga{" "}
-              {`${formatCurrencyId(rangeNumber[0])} - ${formatCurrencyId(rangeNumber[1])} `}
+            <Label htmlFor="search" className={"mb-4 mt-5  grid md:flex "}>
+              <span>Pilih Rentang Harga</span>
+              <span>
+                {`${formatCurrencyId(rangeNumber[0])} - ${formatCurrencyId(rangeNumber[1])} `}
+              </span>
             </Label>
             <Slider
               onValueChange={(value) => setRangeNumber(value)}
@@ -172,7 +172,7 @@ export default function FilterList({
             />
           </div>
 
-          <div className="mt-10">
+          <div className="md:mt-10 pb-15 md:pb-0 md:pt-0 pt-5">
             <Button onClick={handleApply} className="w-full">
               Terapkan Filter
             </Button>

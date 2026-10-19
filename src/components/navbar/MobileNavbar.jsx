@@ -8,7 +8,7 @@ export default function MobileNavbar({ navItems = [] , navMobile }) {
 
   return (
     <div>
-      <div className="fixed top-3 z-[9999]  right-3">
+      <div className="fixed top-3 z-[9]  right-3">
         <Hamburger navItems={navItems} />
       </div>
 

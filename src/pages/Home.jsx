@@ -31,14 +31,14 @@ export default function Home() {
         </section>
       )}
 
-      <section className=" py-5 px-6   md:px-12 bg-slate-50">
+      <section className=" md:py-5 px-6    md:px-12 bg-slate-50">
         <ListGuideHome DataGuide={NormalizeDataGuideRender(DataGuide)} />
       </section>
 
       <Tesimonial TESTIMONIALS={getReview} />
 
       <section className=" px-6 md:px-12 bg-slate-50 border-y border-slate-100">
-        <div className="  flex justify-between m-10 flex-wrap ">
+        <div className="  flex justify-between md:m-10 flex-wrap ">
           <AccordionUse data={DataAccordion} />
 
           <ListItemHomePage />
