@@ -9,7 +9,7 @@ export default function TourGuides({ guide, privat, noBadge }) {
       <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-10">
         List Pemandu Tour
       </h2>
-      <div className="flex flex-wrap gap-10 md:gap-24 items-start ">
+      <div className="flex max-w-full overflow-x-auto gap-10 md:gap-24 items-start ">
         {guide?.map((el, idx) => {
           const {
             identity,
@@ -28,11 +28,10 @@ export default function TourGuides({ guide, privat, noBadge }) {
                   noBage={noBadge}
                   isActive={isActiveHandle}
                   photo={photo}
-                  size={isActiveHandle ? "lg" : "small"}
                 />
 
                 <div>
-                  <p className="text-base font-semibold text-gray-900">
+                  <p className="max-w-25 md:max-w-full truncate text-base font-semibold text-gray-900">
                     {name}
                   </p>
 

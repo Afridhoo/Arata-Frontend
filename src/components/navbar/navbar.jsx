@@ -44,11 +44,11 @@ export default function Navbar() {
         />
       </nav>
 
-      <nav className={"sm:hidden"}>
+      <nav className={"sm:hidden "}>
         <MobileNavbar navItems={getNavDefaultRender} navMobile={navMobile} />
       </nav>
 
-      <main className={!isMobile ? "pt-24" : "pt-5"}>
+      <main className={!isMobile ? "pt-24" : 'pb-10'}>
         <Outlet />
       </main>
     </div>

@@ -132,7 +132,7 @@ export default function ReviewGuide({
       </div>
 
       <form id="reviewGuide" onSubmit={handleSubmit(handleReview)}>
-        <div className="flex  flex-wrap mt-10 items-center gap-10">
+        <div className="flex  max-w-full overflow-x-auto  mt-10 items-center gap-10">
           {guide?.map((el, idxG) => {
             const { name, photo, _id } = el.identity;
 
@@ -159,13 +159,17 @@ export default function ReviewGuide({
                     )}
                 </div>
                 <span>
-                  <p className="text-center mt-2 pb-2 border-b border-gray-200">
+                  <p className=" max-w-full truncate text-center mt-2 pb-2 border-b border-gray-200">
+                    
+                    
+
                     {name}
+                    
                   </p>
                 </span>
 
                 <div className="flex items-center gap-2 mt-3 justify-center">
-                  <span className="text-sm flex font-medium text-gray-500">
+                  <span className="text-sm hidden md:flex font-medium text-gray-500">
                     Berikan Penilaian
                   </span>
                   <span className="text-sm flex font-semibold text-gray-700">
