@@ -14,6 +14,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { UseSignOut } from "@/features/auth/hooks/useAuth";
 import {
   EllipsisVerticalIcon,
   LogOutIcon,
@@ -29,6 +30,12 @@ const fastFitur = [
 
 export function NavUser({ user }) {
   const { isMobile } = useSidebar();
+  const { mutate: Logout } = UseSignOut();
+
+  function handleLogOut() {
+    Logout();
+  }
+
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -84,7 +91,10 @@ export function NavUser({ user }) {
               </DropdownMenuGroup>
             ))}
             <DropdownMenuSeparator />
-            <DropdownMenuItem className={"cursor-pointer"}>
+            <DropdownMenuItem
+              onClick={handleLogOut}
+              className={"cursor-pointer"}
+            >
               <LogOutIcon />
               Log out
             </DropdownMenuItem>

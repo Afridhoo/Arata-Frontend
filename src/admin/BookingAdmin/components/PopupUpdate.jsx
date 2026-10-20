@@ -11,7 +11,7 @@ import { toast } from "sonner";
 import { DialogSimpleUse } from "@/components/DialogSimpleUse";
 
 export default function PopupUpdate({ value, onSucsess, onCancel, options }) {
-  const { id, payment, totalPrice, status, bookingDate, quantity } = value;
+  const { _id , payment, totalPrice, status, bookingDate, quantity } = value;
   const { email, telphone, role, name: userName } = value.user;
   const { name: tourName, _id: idTour, price } = value.tour;
 
@@ -21,7 +21,7 @@ export default function PopupUpdate({ value, onSucsess, onCancel, options }) {
     if (status === statusUpdate)
       return toast.error("Anda Mengupdate Status Yang Sama");
 
-    onSucsess(id, statusUpdate, idTour);
+    onSucsess(_id, statusUpdate, idTour);
   }
 
   return (

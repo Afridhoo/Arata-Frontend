@@ -47,8 +47,6 @@ export default function ReviewGuide({
     num: el.rating,
   }));
 
- 
-
   const [isActiveStar, setIsActiveStar] = useState(
     getDefaultRating?.length > 0 ? getDefaultRating : [],
   );
@@ -160,11 +158,7 @@ export default function ReviewGuide({
                 </div>
                 <span>
                   <p className=" max-w-full truncate text-center mt-2 pb-2 border-b border-gray-200">
-                    
-                    
-
                     {name}
-                    
                   </p>
                 </span>
 

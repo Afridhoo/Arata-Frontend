@@ -62,6 +62,7 @@ export default function BookingAdmin() {
 
   function onSucsess(id, status, tourId) {
     const value = { status, tourId };
+
     UpdateBooking({ value, idBooking: id });
     setValEditForm(null);
   }

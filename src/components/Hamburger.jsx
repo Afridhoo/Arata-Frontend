@@ -65,11 +65,7 @@ const deliveryTimes = [
     label: "Histori Perjalanan",
     icon: <LucideHistory />,
   },
-  {
-    value: "logout",
-    label: "Log Out",
-    icon: <LucideLogOut />,
-  },
+
 ];
 
 export default function Hamburger() {

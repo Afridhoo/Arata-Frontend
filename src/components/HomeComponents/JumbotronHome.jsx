@@ -15,7 +15,7 @@ export default function JumbotronHome({ img }) {
 
       {/* Hero Content */}
       <div className=" relative z-10 top-25 md:top-0 w-full max-w-5xl mx-auto px-6 sm:px-8 md:pb-40">
-        <p className="text-lg  md:text-6xl text-white/90 font-medium mb-5 max-w-3xl">
+        <p className="text-2xl  md:text-6xl text-white/90 font-medium mb-5 max-w-3xl">
           Temukan wisata impian, pemandu profesional, dan pengalaman tak
           terlupakan dalam satu platform.
         </p>
