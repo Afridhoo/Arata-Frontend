@@ -33,10 +33,10 @@ export default function TablesAdmin({
 
       <SectionCards value={stats} />
 
-      <div className="flex justify-between border-b border-gray-300 pb-3">
+      <div className="flex flex-wrap gap-5 justify-between border-b border-gray-300 pb-3">
         {tabs && <TabsWithIcon tabs={tabs} onClickTabs={setIsActiveTabs} />}
 
-        <div className=" gap-2  flex items-center">
+        <div className=" gap-2 flex-wrap flex items-center">
           {headline === "Tours" && role === "Admin" && (
             <Button onClick={() => setIsActivePost(true)}>Tambah Tour</Button>
           )}
@@ -59,7 +59,7 @@ export default function TablesAdmin({
           {setDate && <FilterDateTour params={params} />}
 
           {role === "Guide" && handleSeeUser && (
-            <>
+            <div className="flex flex-wrap gap-3">
               <IsActionPerRoleActive
                 setIsActive={handleSeeUser}
                 text={"Lihat Guide Bersama"}
@@ -70,7 +70,7 @@ export default function TablesAdmin({
                 text={"Absen Kehadiran User"}
                 Icon={FiUserCheck}
               />
-            </>
+            </div>
           )}
         </div>
       </div>

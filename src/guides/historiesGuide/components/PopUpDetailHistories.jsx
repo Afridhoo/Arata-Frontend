@@ -22,6 +22,7 @@ import { BadgeSimpleUse } from "@/components/BadgeSimpleUse";
 import HeaderInfo from "../componentesPopup/HeaderInfo";
 import { Button } from "@/components/ui/button";
 import { formatDateId } from "@/utils/convertDate";
+import BadgePerStatusLocations from "@/components/BadgePerStatusLocations";
 
 export default function PopUpDetailHistories({ value = [], onClose }) {
   const [pagination, setPagination] = useState(0);
@@ -96,8 +97,8 @@ export default function PopUpDetailHistories({ value = [], onClose }) {
           </div>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-10 space-y-6  bg-white">
-          <div className="flex items-center  justify-between gap-5">
+        <div className="flex-1  overflow-y-auto p-10 space-y-6  bg-white">
+          <div className="flex flex-wrap items-center  justify-between gap-5">
             <HeaderInfo
               title={"Status Rombongan"}
               value={
@@ -155,27 +156,24 @@ export default function PopUpDetailHistories({ value = [], onClose }) {
                       </div>
 
                       <div className="bg-white   rounded-2xl p-5 border-gray-200 border">
-                        <div className="flex items-center justify-between gap-4 mb-4">
+                        <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
                           <div>
-                            <div className="flex items-center gap-5">
+                            <div className="flex flex-wrap items-center gap-3 md:gap-5">
                               <p className="text-gray-500  text-[13px] font-bold">
                                 {description}
                               </p>
 
-                              <BadgeSimpleUse
-                                desc={statusHandle}
-                                variant={"outline"}
-                              />
+                              <BadgePerStatusLocations status={statusHandle} />
                             </div>
-                            <p className="text-gray-800 text-[17px] font-medium">
+                            <p className="text-gray-800  mt-3 md:mt-0 text-xs md:text-[17px] font-medium">
                               {note}
                             </p>
                           </div>
 
-                          <div className="flex gap-5">
+                          <div className="flex flex-wrap gap-5">
                             <BadgeSimpleUse
-                              desc={`Diupload: ${formatDateId(uploadAt) || ""}`}
-                              variant={'outline'}
+                              desc={`${formatDateId(uploadAt) || ""}`}
+                              variant={"outline"}
                             />
                             <BadgeSimpleUse
                               desc={`${images?.length || 0} Foto`}

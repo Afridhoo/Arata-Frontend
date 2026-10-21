@@ -14,7 +14,7 @@ export default function ArichiveSkill({
 }) {
   return (
     <div className="space-y-4  pt-4 border-t border-border/40">
-      <div className="flex items-center w-[400px] justify-between">
+      <div className="flex items-center flex-wrap w-[400px]  justify-between">
         <h2 className="text-lg font-semibold   text-foreground flex items-center gap-2">
           <Archive className="w-4 h-4 text-muted-foreground" />
           <span>{titleMain}</span>
