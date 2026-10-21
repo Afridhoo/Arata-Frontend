@@ -92,14 +92,12 @@ export default function FilterBooking({ params }) {
             label={"Booking"}
             value={statusBooking}
             setChecked={setChecked}
-            defaultChecked={params?.booking}
             checked={checked}
           />
           <CheckboxDateTour
             label={"Tanggal Booking"}
             value={date}
             setChecked={setChecked}
-            defaultChecked={params?.date}
             checked={checked}
           />
 
@@ -107,7 +105,6 @@ export default function FilterBooking({ params }) {
             label={"Total Biaya"}
             value={totals}
             setChecked={setChecked}
-            defaultChecked={params?.totals}
             checked={checked}
           />
 
@@ -115,7 +112,6 @@ export default function FilterBooking({ params }) {
             label={"Group"}
             value={group}
             setChecked={setChecked}
-            defaultChecked={params?.group}
             checked={checked}
           />
 

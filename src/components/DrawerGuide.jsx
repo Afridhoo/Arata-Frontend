@@ -27,7 +27,7 @@ export function DrawerGuide({
     <Drawer swipeDirection={mobileCheck ? "down" : "right"}>
       <DrawerTrigger
         render={
-          <Button>
+          <Button size="lg">
             {textDisplay} <LucideUserCheck2 />
           </Button>
         }

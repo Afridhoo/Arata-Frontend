@@ -22,7 +22,7 @@ export default function DisplayUser({ UserBooking, icon, nameTour }) {
     <div>
       <Drawer swipeDirection={mobileCheck ? "down" : "right"}>
         <DrawerTrigger
-          render={<Button variant="default"> User Booking {icon}</Button>}
+          render={<Button size="lg" variant="default"> User Booking {icon}</Button>}
         />
         <DrawerContent>
           <DrawerHeader>

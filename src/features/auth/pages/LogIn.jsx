@@ -7,7 +7,7 @@ import { LoginShadcn } from "../components/LoginShadcn";
 import NewLoading from "@/components/loading/NewLoading";
 
 export default function LogIn() {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
   const { mutate: SignIn, isPending } = UseSignIn();
 
   if (isPending) return <NewLoading />;
@@ -16,8 +16,6 @@ export default function LogIn() {
     const chekingIpt = chekingUseForm(value);
     if (!chekingIpt) return;
     SignIn(value);
-
-    reset();
   }
 
   return (

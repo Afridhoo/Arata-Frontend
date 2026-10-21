@@ -1,25 +1,30 @@
 import { useEffect, useState } from "react";
-import { UseSearchUser, UseUpdateRoleUser } from "./UseAddNewGuide";
+
 import TableBookingAdmin from "../BookingAdmin/components/BookingAdmin/TableBookingAdmin";
 import { formatDateId } from "../../utils/convertDate";
 import TablesAdmin from "../GlobalComponents/TablesAdmin";
 import { FiUsers } from "react-icons/fi";
 import PopupUpdateRole from "./components/PopupUpdateRole";
+import { useSearchParams } from "react-router-dom";
+import { UseSearchUser, UseUpdateRoleUser } from "./UseAddNewGuide";
+import { GetParamsAddNewGuide } from "@/features/tours/components/Params";
+import PaginationSimpel from "@/components/PaginationSimpel";
+import NewLoading from "@/components/loading/NewLoading";
 
 export default function AddNewGuide() {
-  const { mutate: InsertSearch, data: ResultSearch } = UseSearchUser();
+  const [pagination, setPagination] = useState(1);
+  const [paramsFilter] = useSearchParams();
+
+  const params = GetParamsAddNewGuide({ params: paramsFilter });
+
+  const { data: ResultSearch = [], isPending } = UseSearchUser({
+    page: pagination,
+    filter: params,
+  });
   const { mutate: UpdateRole } = UseUpdateRoleUser();
-  const [valueSearch, setValueSearch] = useState(null);
-  const [isActive, setIsActive] = useState(null);
   const [valueUser, setValueUser] = useState(null);
 
-  useEffect(() => {
-    const timeOut = setTimeout(() => {
-      InsertSearch({ valueSearch });
-    }, 500);
-
-    return () => clearTimeout(timeOut);
-  }, [valueSearch]);
+  if (isPending) return <NewLoading />;
 
   const tableHead = [
     "name",
@@ -65,13 +70,7 @@ export default function AddNewGuide() {
         />
       )}
 
-      <TablesAdmin
-        headline={"Handle User"}
-        searchQuery={valueSearch}
-        setIsActive={setIsActive}
-        setSearchQuery={setValueSearch}
-        Icon={FiUsers}
-      />
+      <TablesAdmin headline={"Handle User"} Icon={FiUsers} params={params} />
 
       <TableBookingAdmin
         valueTable={filterVal}
@@ -79,6 +78,15 @@ export default function AddNewGuide() {
         tableHead={tableHead}
         noDisplayDelete={true}
       />
+
+      {ResultSearch.length > 0 && (
+        <PaginationSimpel
+          pagination={pagination}
+          setPagination={setPagination}
+          lengthData={ResultSearch?.length}
+          route={"admin/addNewGuide"}
+        />
+      )}
     </div>
   );
 }

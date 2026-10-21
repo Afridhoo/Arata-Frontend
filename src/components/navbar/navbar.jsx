@@ -45,7 +45,7 @@ export default function Navbar() {
       </nav>
 
       <nav className={"sm:hidden "}>
-        <MobileNavbar navItems={getNavDefaultRender} navMobile={navMobile} />
+        <MobileNavbar navMobile={navMobile} />
       </nav>
 
       <main className={!isMobile ? "pt-24" : 'pb-10'}>

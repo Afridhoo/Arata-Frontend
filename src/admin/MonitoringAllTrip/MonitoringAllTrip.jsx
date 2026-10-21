@@ -36,10 +36,10 @@ export default function MonitoringAllTrip() {
     if (getActiveTrip) {
       setGroupLocation({ groupLocation, destinationLocation, uploadAt });
 
-      // GetRoadLine({
-      //   coordinates: allLocCoords?.map((el) => el.coordinates),
-      //   coordsBus: [groupLocation, destinationLocation],
-      // });
+      GetRoadLine({
+        coordinates: allLocCoords?.map((el) => el.coordinates),
+        coordsBus: [groupLocation, destinationLocation],
+      });
     } else reset();
   }
 

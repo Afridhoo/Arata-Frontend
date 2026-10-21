@@ -13,13 +13,16 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 export function UseSignUp() {
+  const query = useQueryClient();
+
   return useMutation({
     mutationFn: SignUp,
-    onSuccess: () => {
-      toast.success("Berhasil Register");
+    onSuccess: (data) => {
+      toast.success(data.message || "Berhasil Register");
+      query.invalidateQueries({ queryKey: ["User"] });
     },
-    onError: () => {
-      toast.error("Gagal Register");
+    onError: (err) => {
+      toast.error(err?.response?.data?.message || "Gagal Register");
     },
   });
 }
@@ -50,7 +53,7 @@ export function UseSignOut() {
     mutationFn: SignOut,
     onSuccess: () => {
       toast.success("Berhasil Logout");
-      query.resetQueries()
+      query.resetQueries();
       navigate("/");
     },
     onError: () => {
@@ -58,6 +61,8 @@ export function UseSignOut() {
     },
   });
 }
+
+
 
 export function UseGetMe() {
   return useQuery({

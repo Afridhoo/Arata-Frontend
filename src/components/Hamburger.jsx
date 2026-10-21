@@ -101,7 +101,7 @@ export default function Hamburger() {
         <DrawerHeader>
           <DrawerTitle className="flex items-center gap-2">
             <AvatarSimpleUse photo={photo} size={"small"} isActive={true} />
-            Haloo {name}
+            Haloo {name || "User"}
           </DrawerTitle>
           <DrawerDescription></DrawerDescription>
         </DrawerHeader>

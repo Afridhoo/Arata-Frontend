@@ -36,7 +36,7 @@ export const GetParams = (paramsFilter) => {
     name: getNameTour?.[0] || "",
     categoriesDest,
     categoriesHotel,
-    booking
+    booking,
   };
 
   const check = paramsFilter?.size === 0 ? { NumberRangeValue } : value;
@@ -67,6 +67,17 @@ export const GetParamsBooking = (paramsFilter) => {
     totals: getParams("totals"),
     name: getParams("name"),
     group: getParams("group"),
+  };
+
+  return filter;
+};
+
+export const GetParamsAddNewGuide = ({ params }) => {
+  const getParams = (val) => params?.get(val);
+
+  const filter = {
+    searchValue: getParams("searchValue"),
+    role: getParams("role"),
   };
 
   return filter;

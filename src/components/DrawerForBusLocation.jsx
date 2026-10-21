@@ -42,10 +42,14 @@ export function DrawerForBusLocation({
   const calcDurationRute =
     distance && duration && calcDistanceDuration({ distance, duration });
 
- const mobileCheck = useIsMobile();
+  const mobileCheck = useIsMobile();
 
   return (
-    <Drawer open={open} onOpenChange={setOpen} swipeDirection={mobileCheck ? "down" : "right"}>
+    <Drawer
+      open={open}
+      onOpenChange={setOpen}
+      swipeDirection={mobileCheck ? "down" : "right"}
+    >
       <DrawerTrigger
         render={
           <Button size="lg" className="cursor-pointer">
@@ -61,7 +65,6 @@ export function DrawerForBusLocation({
           <DrawerDescription>
             Lama Perjalanan Memakan Waktu {calcDurationRute?.duration}
           </DrawerDescription>
-
         </DrawerHeader>
         <div className="flex-1 scroll-fade  overflow-y-auto p-4">
           <RadioGroup value={isActive} onValueChange={steps} className="gap-2">

@@ -21,7 +21,7 @@ import {
   LucideUser2,
   LucideArrowUpLeft,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const fastFitur = [
   { title: "Profil Akun", url: "/AccountMe", icon: <LucideUser2 /> },
@@ -31,6 +31,9 @@ const fastFitur = [
 export function NavUser({ user }) {
   const { isMobile } = useSidebar();
   const { mutate: Logout } = UseSignOut();
+
+  const { pathname: url } = useLocation();
+  const split = url?.split("/")[1];
 
   function handleLogOut() {
     Logout();
@@ -47,7 +50,9 @@ export function NavUser({ user }) {
           >
             <Avatar className="size-8 rounded-lg ">
               <AvatarImage src={user.photo} alt={user.name} />
-              <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+              <AvatarFallback className="rounded-lg">
+                <LucideUser2 />
+              </AvatarFallback>
             </Avatar>
             <div className="grid flex-1 text-left text-sm leading-tight">
               <span className="truncate font-medium">{user.name}</span>
@@ -68,7 +73,9 @@ export function NavUser({ user }) {
                 <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                   <Avatar className="size-8">
                     <AvatarImage src={user.photo} alt={user.name} />
-                    <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                    <AvatarFallback className="rounded-lg">
+                      <LucideUser2 />
+                    </AvatarFallback>
                   </Avatar>
                   <div className="grid flex-1 text-left text-sm leading-tight">
                     <span className="truncate font-medium">{user.name}</span>
@@ -82,12 +89,14 @@ export function NavUser({ user }) {
             <DropdownMenuSeparator />
             {fastFitur?.map((el, idx) => (
               <DropdownMenuGroup key={idx}>
-                <Link to={el.url}>
-                  <DropdownMenuItem className={"cursor-pointer"}>
-                    {el.icon}
-                    {el.title}
-                  </DropdownMenuItem>
-                </Link>
+                {split !== el.url?.split("/")?.[1] && (
+                  <Link to={el.url}>
+                    <DropdownMenuItem className={"cursor-pointer"}>
+                      {el.icon}
+                      {el.title}
+                    </DropdownMenuItem>
+                  </Link>
+                )}
               </DropdownMenuGroup>
             ))}
             <DropdownMenuSeparator />

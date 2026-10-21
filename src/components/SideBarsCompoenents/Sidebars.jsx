@@ -1,9 +1,9 @@
-import { UseSignOut } from "../../features/auth/hooks/useAuth";
+
+
 
 import SiderBarRoleAction from "./SiderBarRoleAction";
 import { Outlet } from "react-router-dom";
 import {
-  LucideHome,
   LucideNavigation,
   LucideUser2,
   LucideUserCog2,
@@ -15,7 +15,6 @@ export default function Sidebars() {
 
   const Route = {
     navMain: [
-      { url: "/", icon: <LucideHome />, title: "Kembali Ke Home" },
       {
         url: "/AccountMe",
         icon: <LucideUser2 />,

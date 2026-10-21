@@ -20,7 +20,6 @@ export async function SignIn(value) {
 
 export async function GetMe() {
   const GetAccountMe = await callAxiosApi.get(`users/getAccount`);
-  
 
   return GetAccountMe.data.data.value;
 }

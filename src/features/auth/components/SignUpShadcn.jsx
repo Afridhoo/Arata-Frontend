@@ -87,8 +87,8 @@ export function SignUpShadcn({ register }) {
                 </Field>
               </Field>
               <Field>
-                <Button disabled ={true} className={"cursor-pointer"} type="submit">
-                  {/* Buat Akun */} Fitur Register Dimatikan (Maintanance)
+                <Button className={"cursor-pointer"} type="submit">
+                  Daftar Akun
                 </Button>
               </Field>
               <FieldSeparator>Atau Lanjutkan Dengan</FieldSeparator>

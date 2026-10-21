@@ -1,7 +1,9 @@
 import { callAxiosApi } from "@/Api/Axios";
 
-export async function searchUser({ valueSearch }) {
-  const response = await callAxiosApi.get(`users/getUser/${valueSearch}`);
+export async function searchUser({ page, filter }) {
+  const response = await callAxiosApi.get(`users/getUser`, {
+    params: { page, ...filter },
+  });
 
   return response.data.data;
 }

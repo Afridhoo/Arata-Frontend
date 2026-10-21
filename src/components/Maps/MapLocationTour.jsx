@@ -54,9 +54,9 @@ export default function MapLocationTour({
     setIsFullMap(true);
     if (!noRenderLine) {
       const getCoordsLoc = concatVal?.map((el) => el.coordinates);
-      // if (!coordsBus) InsertLatlng({ coordinates: getCoordsLoc });
-      // if (coordsBus)
-      // InsertLatlng({ coordinates: getCoordsLoc, coordsBus: coordsBus });
+      if (!coordsBus) InsertLatlng({ coordinates: getCoordsLoc });
+      if (coordsBus)
+      InsertLatlng({ coordinates: getCoordsLoc, coordsBus: coordsBus });
     }
   }
 

@@ -148,6 +148,9 @@ export function AppSidebar({ navMain, user }) {
                 size={"sm"}
                 isActive={true}
               />
+              <span className="font-semibold text-sm text-gray-500">
+                Arata Dashboard
+              </span>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

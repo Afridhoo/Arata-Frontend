@@ -102,6 +102,8 @@ export default function ToursAdmin() {
     "UserBooking",
   ];
 
+
+
   return (
     <div className="p-10 pt-5">
       {isActivePost && (

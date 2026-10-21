@@ -8,6 +8,8 @@ import FilterDateTour from "../DateTourAdmin/components/FilterDateTour";
 import FilterBooking from "../BookingAdmin/components/FilterBooking";
 import { Button } from "@/components/ui/button";
 import TabsWithIcon from "@/components/TabsWithIcon";
+import { useLocation } from "react-router-dom";
+import FilterAddNewGuide from "../AddNewGuide/components/FilterAddNewGuide";
 
 export default function TablesAdmin({
   headline,
@@ -23,6 +25,8 @@ export default function TablesAdmin({
   tabs,
   setIsActiveTabs,
 }) {
+  const { pathname } = useLocation();
+
   return (
     <div className="  w-full grid gap-10">
       <Headline role={role} headline={headline} Icon={Icon} />
@@ -44,6 +48,10 @@ export default function TablesAdmin({
               route={"admin/tours"}
               params={params}
             />
+          )}
+
+          {pathname === "/admin/addNewGuide" && (
+            <FilterAddNewGuide params={params} />
           )}
 
           {headline === "Booking" && <FilterBooking params={params} />}
