@@ -51,7 +51,7 @@ export function DrawerSimpelUse({
           </Button>
         }
       />
-      <DrawerContent>
+      <DrawerContent className={"pb-20"}>
         <DrawerHeader>
           <DrawerTitle className={`${!noPt && !mobileCheck && "pt-20"}`}>
             {title}
@@ -59,7 +59,7 @@ export function DrawerSimpelUse({
 
           <DrawerDescription>{description}</DrawerDescription>
         </DrawerHeader>
-        <div className="flex-1 scroll-fade overflow-y-auto p-4">
+        <div className="flex-1 scroll-fade md:max-h-full max-h-[250px] overflow-y-auto p-4">
           <RadioGroup
             value={isActiveCoordinates}
             onValueChange={RenderValue}

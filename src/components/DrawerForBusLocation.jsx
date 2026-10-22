@@ -57,16 +57,16 @@ export function DrawerForBusLocation({
           </Button>
         }
       />
-      <DrawerContent>
+      <DrawerContent className={"md:pb-0 pb-20"}>
         <DrawerHeader>
-          <DrawerTitle className={!noPadding && "pt-20"}>
+          <DrawerTitle className={!noPadding && !mobileCheck && "pt-20"}>
             Perjalanan Ke Lokasi Wisata {title}
           </DrawerTitle>
           <DrawerDescription>
             Lama Perjalanan Memakan Waktu {calcDurationRute?.duration}
           </DrawerDescription>
         </DrawerHeader>
-        <div className="flex-1 scroll-fade  overflow-y-auto p-4">
+        <div className="flex-1 scroll-fade max-h-[250px] md:max-h-full  overflow-y-auto p-4">
           <RadioGroup value={isActive} onValueChange={steps} className="gap-2">
             {steps.map((el, idx) => {
               const calcTime = calcDistanceDuration({

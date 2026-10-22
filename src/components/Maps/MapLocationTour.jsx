@@ -36,7 +36,7 @@ export default function MapLocationTour({
 
   const { coordinates } = startLocation;
   const refLocations = useRef({});
-  const [location, setLocationActive] = useState();
+  const [location, setLocationActive] = useState(null);
   const [coorLineBus, setCoordLineBus] = useState(null);
   const [getWayPoints, setWayPoints] = useState(null);
 
@@ -87,7 +87,7 @@ export default function MapLocationTour({
         <div
           className={` ${
             isFullMap
-              ? "fixed inset-0 z-9   md:w-full md:h-full rounded-none"
+              ? "fixed inset-0 z-[9]   md:w-full md:h-full rounded-none"
               : "relative z-[1] w-full  h-[350px] md:h-[480px] rounded-xl border border-gray-200"
           }`}
         >
