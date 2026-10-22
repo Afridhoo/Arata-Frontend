@@ -44,7 +44,7 @@ export default function BookingMe() {
 
   return (
     <div>
-      <div className="flex  w-full    mt-10  ">
+      <div className="flex  w-full  overflow-x-auto  mt-10  ">
         {tabs.map((el) => {
           const isActiveTab = el === isActive;
           return (

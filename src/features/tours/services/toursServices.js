@@ -23,7 +23,5 @@ export async function GetToursById({ id }) {
 export async function GetTourHomePage() {
   const response = await callAxiosApi.get(`tours/tourHomePage`);
 
-  
-
   return response.data.data;
 }

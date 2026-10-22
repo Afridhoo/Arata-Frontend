@@ -6,12 +6,20 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import HoverCardUse from "./HoverCardUse";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { DialogUseSimpleImg } from "./DialogUseSimpleImg";
+import Autoplay from "embla-carousel-autoplay";
 
-export function CarouselPhotoDisplay({ img, isDown, RenderText }) {
+export function CarouselPhotoDisplay({
+  img,
+  isDown,
+  RenderText,
+  aspect = "5/3",
+  title,
+}) {
   const [numDisplay, setNumDisplay] = useState(null);
   const [isOpenDialog, setIsOpenDialog] = useState(null);
+  const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
 
   function handleDownload() {
     if (isDown) {
@@ -24,12 +32,23 @@ export function CarouselPhotoDisplay({ img, isDown, RenderText }) {
     setIsOpenDialog(null);
   }
 
+ 
+
   return (
     <Carousel
       className="w-full pt-5 relative"
       setNumDisplay={setNumDisplay}
       numDisplay={numDisplay}
+      plugins={[plugin.current]}
+      onMouseEnter={plugin.current.stop}
+      onMouseLeave={plugin.current.play}
+      opts={{ align: "start" }}
     >
+      {title && (
+        <h2 className="text-sm font-medium text-gray-400 uppercase tracking-widest mb-8">
+          {title}
+        </h2>
+      )}
       <CarouselContent>
         {isDown && isOpenDialog && (
           <DialogUseSimpleImg
@@ -52,9 +71,9 @@ export function CarouselPhotoDisplay({ img, isDown, RenderText }) {
               >
                 <div
                   key={index}
-                  className="aspect-[5/3] overflow-hidden rounded-xl"
+                  className={`aspect-[${aspect}]`}
                 >
-                  <img src={img} className="w-full h-full object-cover" />
+                  <img src={img} className="w-full h-full  rounded-xl object-cover" />
                 </div>
               </CarouselItem>
             }
@@ -63,11 +82,8 @@ export function CarouselPhotoDisplay({ img, isDown, RenderText }) {
         ))}
       </CarouselContent>
       <div className="absolute  right-13 -bottom-8">
-      
-
         <CarouselNext size="lg" />
-        <CarouselPrevious size="lg" className={"ml-3"}/>
-       
+        <CarouselPrevious size="lg" className={"ml-3"} />
       </div>
     </Carousel>
   );

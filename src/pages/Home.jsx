@@ -31,7 +31,7 @@ export default function Home() {
         </section>
       )}
 
-      <section className=" md:py-5 px-6    md:px-12 bg-slate-50">
+      <section className=" md:py-5 px-6 md:px-12 bg-slate-50">
         <ListGuideHome DataGuide={NormalizeDataGuideRender(DataGuide)} />
       </section>
 

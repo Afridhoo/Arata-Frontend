@@ -63,7 +63,7 @@ export default function TabsProps({
 
 
   return (
-    <div className="flex flex-col gap-6 p-4 md:p-9 max-w-7xl mx-auto">
+    <div className="flex flex-wrap flex-col gap-6 p-4 md:p-9 max-w-7xl mx-auto">
       {getBooking?.map((el) => {
         const badgeStyle =
           statusStyles?.[el.status.toUpperCase()] ||
@@ -106,7 +106,7 @@ export default function TabsProps({
 
               <div className="flex flex-col items-center sm:items-start flex-grow h-full justify-between gap-3 w-full">
                 <div className="flex flex-col items-center sm:items-start gap-2 w-full">
-                  <div className="flex items-center gap-3 w-full justify-between sm:justify-start">
+                  <div className=" flex-wrap flex items-center gap-3 w-full justify-between sm:justify-start">
                     <span
                       className={`px-3 py-1 text-xs font-semibold rounded-full tracking-wide shadow-sm ${badgeStyle}`}
                     >

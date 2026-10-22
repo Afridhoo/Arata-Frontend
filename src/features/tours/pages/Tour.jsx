@@ -19,6 +19,9 @@ import { EmptySimpleUse } from "@/components/EmptySimpleUse";
 import { LucideCircleSlashed } from "lucide-react";
 import { AccordionListTourLocations } from "@/components/AccordionListTourLocations";
 import Tesimonial from "@/components/HomeComponents/Tesimonial";
+import { useIsMobile } from "@/hooks/use-mobile";
+
+import { CarouselPhotoDisplay } from "@/components/CarouselPhotoDisplay";
 
 export default function Tour() {
   const { id } = useParams();
@@ -26,6 +29,7 @@ export default function Tour() {
   const { mutate: GetTour, data: tour } = UseGetOneTourById();
   useEffect(() => GetTour({ id }), [id]);
   const [isFullMap, setIsFullMap] = useState(null);
+  const checkMobile = useIsMobile();
 
   if (!tour) return <NewLoading />;
 
@@ -75,20 +79,30 @@ export default function Tour() {
 
         {!isFullMap && <BookingTour tour={tour} />}
 
-        <main className="max-w-5xl mx-auto px-6 sm:px-8">
-          
-          
+        <main className="max-w-5xl mx-auto px-6 ">
           <QuickFacts tour={tour} />
-
 
           <AboutTour tour={tour} />
 
-
-
-          <ImgPreviewTour tour={getImg(destination)} title="Destinasi" />
-
-
-          <ImgPreviewTour tour={getImg(hotel)} title="Penginapan" />
+          {checkMobile ? (
+            <div className="grid gap-10 mb-10">
+              <CarouselPhotoDisplay
+                img={getImg(destination)}
+                aspect="2/3"
+                title={"Wisata"}
+              />
+              <CarouselPhotoDisplay
+                img={getImg(hotel)}
+                aspect="2/3"
+                title={"Akomodasi"}
+              />
+            </div>
+          ) : (
+            <>
+              <ImgPreviewTour tour={getImg(destination)} title="Wisata" />
+              <ImgPreviewTour tour={getImg(hotel)} title="Akomodasi" />
+            </>
+          )}
 
           {/* 6. Itinerary / Map */}
           <MapLocationTour
@@ -104,7 +118,9 @@ export default function Tour() {
             <TourGuides guide={normalizeDataGuide} />
           )}
 
-          {Review && Review?.length > 0 && <Tesimonial TESTIMONIALS={Review} />}
+          {Review && Review?.length > 0 &&
+           <Tesimonial TESTIMONIALS={Review} />
+           }
 
           <AccordionUse data={DataAccordion} fullSize={true} />
         </main>

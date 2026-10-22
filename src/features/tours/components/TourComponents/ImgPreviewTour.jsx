@@ -1,7 +1,7 @@
 export default function ImgPreviewTour({ tour, title }) {
   if (!tour || tour.length === 0) return null;
 
-  // Premium gallery layout: 1 large + up to 4 small in a 2x2 grid
+
   const mainImage = tour[0];
   const sideImages = tour.slice(1, 5);
   const extraImages = tour.slice(5);
