@@ -66,7 +66,7 @@ export default function DetailHistories() {
         </div>
 
         <div className="flex-1  overflow-y-auto p-10 space-y-6  ">
-          <div className="flex items-center  flex-wrap gap-10">
+          <div className="flex items-center  flex-wrap gap-3 md:gap-10">
             <HeaderInfo
               title={"Status Rombongan"}
               value={
@@ -122,7 +122,7 @@ export default function DetailHistories() {
                   const { name, photo } = GuideIdentity?.[0] || {};
 
                   return (
-                    <div key={index} >
+                    <div key={index}>
                       <div className="  absolute  ">
                         <BadgeSimpleUse
                           desc={index + 1}
@@ -135,13 +135,13 @@ export default function DetailHistories() {
                         <div className="flex flex-wrap items-center justify-between gap-4 mb-2">
                           <div>
                             <div className="flex flex-wrap items-center gap-3 md:gap-5">
-                              <p className="text-gray-500  text-[13px] font-bold">
+                              <p className="text-gray-500  text-[15px] font-semibold">
                                 {description}
                               </p>
 
                               <BadgePerStatusLocations status={statusHandle} />
                             </div>
-                            <p className="text-gray-800  mt-0 text-xs md:text-[17px] font-medium">
+                            <p className="text-gray-800  mt-0 text-[17px] font-medium">
                               {note}
                             </p>
 
@@ -164,13 +164,13 @@ export default function DetailHistories() {
 
                           <div className="relative">
                             {GuideIdentity && (
-                              <div className="grid md:absolute   md:w-full  justify-end   ">
+                              <div className="grid md:absolute    md:w-full  justify-end   ">
                                 <span className="font-semibold text-gray-500 text-xs  ">
                                   Di Upload Oleh
                                 </span>
 
-                                <div className="flex items-center gap-2">
-                                  <span className="text-[16px] font-semibold text-gray-800">
+                                <div className="flex mt-2 md:mr-4 items-center gap-2">
+                                  <span className="text-[15px] font-semibold text-gray-800">
                                     {name}
                                   </span>
                                   <AvatarSimpleUse

@@ -38,12 +38,12 @@ import { useAuth } from "@/utils/AuthContext";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useNavigate } from "react-router-dom";
 import LabelHeader from "@/components/LabelHeader";
+import RenderDocumentation from "./componentes/RenderDocumentation";
 
 export default function TripMe() {
   const { isUserNotLogin } = useAuth();
   const { data: Trip, isPending } = UseGetTripMe({ enabled: isUserNotLogin });
   const [isFullMap, setIsFullMap] = useState(null);
-  const navigate = useNavigate();
 
   const checkMobile = useIsMobile();
 
@@ -153,10 +153,6 @@ export default function TripMe() {
 
   const formatFinalGuide = formatGuide?.map((el) => el.value);
   const getGuideHandle = formatFinalGuide?.filter((el) => el.isActiveHandle);
-
-  function handleSeeAllDoc() {
-    navigate(`/Documentation/${idTour}`);
-  }
 
   return (
     <>
@@ -270,26 +266,10 @@ export default function TripMe() {
           </div>
 
           {getImgDocumentation?.length > 0 && (
-            <div className="mt-25 ">
-              <div className="flex flex-wrap gap-2 md:gap-0 justify-between  items-center">
-                <LabelHeader title={"Dokumentasi"} desc={"Foto Perjalanan"} />
-
-                <div onClick={handleSeeAllDoc}>
-                  <h2 className="cursor-pointer hover:text-gray-800 duration-300 font-semibold uppercase tracking-wider   text-xs md:text-[15px] group text-gray-600 flex items-start  ">
-                    <span>Lihat Seluruh Dokumentasi</span>
-                    <ArrowUpRight />
-                  </h2>
-                </div>
-              </div>
-
-              <div >
-                <CarouselPhotoDisplay
-                  img={getImgDocumentation?.slice(0, 10)}
-                  isDown={true}
-                  RenderText={"Klik Foto Untuk Download"}
-                />
-              </div>
-            </div>
+            <RenderDocumentation
+              idTour={idTour}
+              getImgDocumentation={getImgDocumentation}
+            />
           )}
 
           {trip?.length > 0 && (

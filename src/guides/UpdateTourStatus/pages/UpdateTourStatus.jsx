@@ -175,10 +175,7 @@ export default function UpdateTourStatus() {
   ];
 
   return (
-    <div className="p-10 pt-5">
-      {seeGuide?.getGuide.length > 0 && (
-        <PopupSeeGuide dataGuide={seeGuide.getGuide} onCancel={resetSeeGuide} />
-      )}
+    <div className="p-10 pt-5  ">
 
       {valueEdit && (
         <PopupUpdateDestination
@@ -190,6 +187,10 @@ export default function UpdateTourStatus() {
           handleDeleteDoc={handleDeleteDocumentation}
         />
       )}
+      {seeGuide?.getGuide.length > 0 && (
+        <PopupSeeGuide dataGuide={seeGuide.getGuide} onCancel={resetSeeGuide} />
+      )}
+
       {isActivePopup && (
         <PopupCheckUser
           valueUser={userBooking}

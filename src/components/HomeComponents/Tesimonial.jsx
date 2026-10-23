@@ -98,10 +98,8 @@ export default function Tesimonial({ TESTIMONIALS = [] }) {
           ))}
         </CarouselContent>
         <div className=" right-10  top-60  absolute  ">
-          <CarouselPrevious
-            className={"md:w-[40px] md:h-[40px] cursor-pointer  "}
-          />
-          <CarouselNext className={"md:w-[40px] md:h-[40px] cursor-pointer"} />
+          <CarouselPrevious className={"w-[40px] h-[40px] cursor-pointer  "} />
+          <CarouselNext className={"w-[40px] h-[40px] cursor-pointer"} />
         </div>
       </Carousel>
     </section>

@@ -1,6 +1,6 @@
 import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { IoImage } from "react-icons/io5";
+
 
 export default function FileImgUpload({
   register,

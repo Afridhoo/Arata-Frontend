@@ -10,6 +10,7 @@ export default function Note({ register }) {
 
       <Textarea
         id="textarea-message"
+        className={"text-sm"}
         placeholder="Masukan Pesan Dokumentasi Disini."
         {...register}
       />

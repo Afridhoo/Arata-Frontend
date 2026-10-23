@@ -57,7 +57,7 @@ export default function BookingTour({ tour, btnDisplay }) {
       )}
 
       <div
-        className={`fixed md:bottom-0 md:left-0    top-0 md:top-auto  md:right-0 z-[9999] md:bg-white/95 md:backdrop-blur-md md:border-t md:border-gray-200 transition-all duration-500 ${
+        className={`fixed md:bottom-0 md:left-0    top-0 md:top-auto  md:right-0 z-[9] md:bg-white/95 md:backdrop-blur-md md:border-t md:border-gray-200 transition-all duration-500 ${
           scroll ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
         }`}
       >

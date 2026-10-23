@@ -144,12 +144,12 @@ export default function Documentation({
   }
 
   return (
-    <div className="space-y-4 pt-6 border-t border-gray-100 w-fit pb-2">
+    <div className="space-y-4 pt-6 border-t border-gray-100 mt-10 pb-2">
       <label className="text-xs font-bold uppercase tracking-wider text-gray-800 flex items-center gap-1.5">
         <IoImage className="h-4 w-4 text-gray-600" />
         Riwayat Dokumentasi Terupload
       </label>
-      <div className="flex  gap-8 ">
+      <div className="flex  max-w-4xl overflow-x-auto gap-8 ">
         {documentation?.map((doc, idx) => {
           const cheking = isActiveUpdate && isActiveUpdate === doc._id;
           return (

@@ -35,6 +35,7 @@ import { EmptySimpleUse } from "@/components/EmptySimpleUse";
 import MapLocationTour from "@/components/Maps/MapLocationTour";
 import { useState } from "react";
 import { AccordionListTourLocations } from "@/components/AccordionListTourLocations";
+import RenderDocumentation from "../TripMe/componentes/RenderDocumentation";
 
 export default function TripMeId() {
   const { id } = useParams();
@@ -107,8 +108,6 @@ export default function TripMeId() {
     };
   });
 
- 
-
   const formatNewGuide = dataGuide?.map((el) => ({
     ...el,
     guide: el.guides,
@@ -146,10 +145,10 @@ export default function TripMeId() {
       {dateFinished && (
         <BookingTour tour={getTour} btnDisplay={"Pesan Tour Ini Lagi"} />
       )}
-      <main className="max-w-5xl mx-auto px-6 sm:px-8">
+      <main className="max-w-5xl mx-auto px-6 ">
         <div className="grid">
           <div className="mt-5">
-            <div className="flex gap-20">
+            <div className="flex flex-wrap gap-5 md:gap-20">
               <RenderListQuickFastInfo
                 title={"Tanggal Booking"}
                 Icon={<LucideCalendar width={18} />}
@@ -171,7 +170,7 @@ export default function TripMeId() {
           </div>
 
           <div className="mt-5">
-            <div className="flex gap-20">
+            <div className="flex flex-wrap  gap-5 md:gap-20">
               <RenderListQuickFastInfo
                 title={"Hadir"}
                 Icon={<LucideUserCheck2 width={18} />}
@@ -192,7 +191,7 @@ export default function TripMeId() {
           </div>
         </div>
 
-        <div className="flex gap-29">
+        <div className="flex flex-wrap gap-5 md:gap-29">
           <div>
             <div className="mt-20">
               <h2 className="font-semibold uppercase tracking-wider text-[13px]  text-gray-400 flex items-center gap-3 mb-1">
@@ -200,7 +199,7 @@ export default function TripMeId() {
               </h2>
               <span className="text-[26px] font-bold">Perjalanan</span>
             </div>
-            <div className="flex items-start  gap-20 ">
+            <div className="grid grid-cols-3  ">
               <div>
                 <RenderListQuickFastInfo
                   Icon={<LucideClock width={18} />}
@@ -283,35 +282,11 @@ export default function TripMeId() {
           </div>
         </div>
 
-        <div className="mt-18">
+        <div className="mt-18 md:flex hidden">
           <AccordionListTourLocations locations={concatVal} />
         </div>
 
-        <div className="mt-25 ">
-          <div className="flex justify-between items-center">
-            <div className="grid gap-1 ">
-              <h2 className="font-semibold uppercase tracking-wider text-[13px]  text-gray-400 flex items-center gap-3 mb-1">
-                <span>Dokumentasi</span>
-              </h2>
-              <span className="text-[26px] font-bold ">Foto Perjalanan</span>
-            </div>
-
-            <div>
-              <h2 className="cursor-pointer hover:text-gray-800 duration-300 font-semibold uppercase tracking-wider text-[15px] group text-gray-600 flex items-start  ">
-                <span>Lihat Seluruh Foto</span>
-                <ArrowUpRight />
-              </h2>
-            </div>
-          </div>
-
-          <div className="flex items-center  gap-15  max-w-full mt-8">
-            <CarouselPhotoDisplay
-              img={getImg?.slice(0, 10)}
-              isDown={true}
-              RenderText={"Klik Foto Untuk Download"}
-            />
-          </div>
-        </div>
+        <RenderDocumentation idTour={idTour} getImgDocumentation={getImg} />
 
         <div className="mt-30">
           <TourGuides guide={formatNewGuide} noBadge={true} />
@@ -329,7 +304,7 @@ export default function TripMeId() {
           </div>
         )}
 
-        <div className="grid mt-20 ">
+        <div className=" mt-20 ">
           <ReviewGuide
             guide={formatNewGuide}
             dataGuideIsReview={formatOldGuide}

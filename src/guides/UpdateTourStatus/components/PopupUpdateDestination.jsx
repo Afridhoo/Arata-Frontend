@@ -107,7 +107,7 @@ export default function PopupUpdateDestination({
   }
 
   return (
-    <div className=" fixed inset-0 z-40 flex items-center justify-center bg-slate-900/60 p-4 backdrop-blur-sm">
+    <div className="  fixed inset-0 z-10 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-300   ">
       {imgView && (
         <ViewImg
           setImgIdx={setImgIdx}
@@ -116,39 +116,36 @@ export default function PopupUpdateDestination({
           imgView={imgView}
         />
       )}
-      <div className="w-full max-w-5xl transform overflow-hidden rounded-2xl border bg-white shadow-2xl transition-all flex flex-col max-h-[90vh]">
+      <div className=" bg-muted shadow-2xl rounded-4xl  max-w-full  overflow-y-auto  md:p-5">
         <Header _id={_id} onCancel={onCancel} />
 
-        <div className="flex flex-col flex-1 overflow-hidden">
-          <div className="p-6 space-y-6 overflow-y-auto flex-1 bg-slate-50/50">
-            {/* Documentation Create */}
-            <form
-              id="postDocumentation"
-              onSubmit={handleSubmit(handlePostDoc)}
-              className="space-y-4"
-            >
-              <DisplayMainElPostDoc
-                register={register}
-                value={value}
-                formId={"postDocumentation"}
-              />
-            </form>
+        <div className=" p-5 max-w-4xl max-h-[400px]">
+          <form
+            id="postDocumentation"
+            onSubmit={handleSubmit(handlePostDoc)}
+            className="space-y-4"
+          >
+            <DisplayMainElPostDoc
+              register={register}
+              value={value}
+              formId={"postDocumentation"}
+            />
+          </form>
 
-            <div>
-              {documentation && documentation.length > 0 && (
-                <div>
-                  <Documentation
-                    documentation={documentation}
-                    statusHandle={status}
-                    handleImgView={handleImgView}
-                    handleSubmitUpdate={onSaveUpdate}
-                    id={{ tourId, _id }}
-                    documentationId={idDocumentation}
-                    handleDeleteDocumentation={handleDeleteDoc}
-                  />
-                </div>
-              )}
-            </div>
+          <div>
+            {documentation && documentation.length > 0 && (
+              <div>
+                <Documentation
+                  documentation={documentation}
+                  statusHandle={status}
+                  handleImgView={handleImgView}
+                  handleSubmitUpdate={onSaveUpdate}
+                  id={{ tourId, _id }}
+                  documentationId={idDocumentation}
+                  handleDeleteDocumentation={handleDeleteDoc}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>
