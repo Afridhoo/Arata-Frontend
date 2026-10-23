@@ -84,6 +84,7 @@ export default function UpdateTourStatus() {
     GetCategories,
     documentationTour,
     sameGuide,
+    guides: idGuideIdentity,
   } = TourGuide[0] || [];
 
   const { trip } = documentationTour.length > 0 ? documentationTour[0] : {};
@@ -123,6 +124,7 @@ export default function UpdateTourStatus() {
       });
 
     const findValue = concatVal.find((el) => el._id === idValue);
+
     const getIsValidCategories = GetCategories?.find(
       (c) => c?._id === findValue?.categories,
     );
@@ -130,6 +132,7 @@ export default function UpdateTourStatus() {
     const formatValue = {
       handleUpdate: { ...findValue, getIsValidCategories },
       documentationTour,
+      idGuideIdentity,
     };
 
     setValueEdit(formatValue);

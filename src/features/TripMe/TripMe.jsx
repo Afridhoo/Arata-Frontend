@@ -36,11 +36,15 @@ import { UserNotExist } from "@/components/UserNotExist";
 import { AccordionListTourLocations } from "@/components/AccordionListTourLocations";
 import { useAuth } from "@/utils/AuthContext";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useNavigate } from "react-router-dom";
+import LabelHeader from "@/components/LabelHeader";
 
 export default function TripMe() {
   const { isUserNotLogin } = useAuth();
   const { data: Trip, isPending } = UseGetTripMe({ enabled: isUserNotLogin });
   const [isFullMap, setIsFullMap] = useState(null);
+  const navigate = useNavigate();
+
   const checkMobile = useIsMobile();
 
   if (!isUserNotLogin) return <UserNotExist />;
@@ -150,6 +154,10 @@ export default function TripMe() {
   const formatFinalGuide = formatGuide?.map((el) => el.value);
   const getGuideHandle = formatFinalGuide?.filter((el) => el.isActiveHandle);
 
+  function handleSeeAllDoc() {
+    navigate(`/Documentation/${idTour}`);
+  }
+
   return (
     <>
       <div className=" bg-white min-h-screen font-sans antialiased ">
@@ -166,12 +174,7 @@ export default function TripMe() {
 
         <main className="max-w-5xl mx-auto px-6 sm:px-8">
           <div className="grid gap-5 border-b pb-10 mt-20">
-            <div>
-              <h2 className="font-semibold uppercase tracking-wider text-[13px]  text-gray-400 flex items-center gap-3 mb-1">
-                <span>Tour Aktif</span>
-              </h2>
-              <span className="text-[26px] font-bold ">Perjalanan Anda</span>
-            </div>
+            <LabelHeader title={"Tour Aktif"} desc={"Perjalanan Anda"} />
 
             <div className="flex flex-wrap justify-between">
               <RenderListQuickFastInfo
@@ -207,12 +210,7 @@ export default function TripMe() {
 
           <div className="flex  flex-wrap justify-between  mt-15 border-b pb-10">
             <div>
-              <div>
-                <h2 className="font-semibold uppercase tracking-wider text-[13px]  text-gray-400 flex items-center gap-3 mb-1">
-                  <span>Perjalanan</span>
-                </h2>
-                <span className="text-[26px] font-bold">Lokasi Tujuan</span>
-              </div>
+              <LabelHeader title={"Perjalanan"} desc={"Lokasi Tujuan"} />
 
               <div className=" grid grid-cols-2 md:grid-cols-3 gap-10  ">
                 <RenderListQuickFastInfo
@@ -274,18 +272,11 @@ export default function TripMe() {
           {getImgDocumentation?.length > 0 && (
             <div className="mt-25 ">
               <div className="flex flex-wrap gap-2 md:gap-0 justify-between  items-center">
-                <div className="grid gap-1 ">
-                  <h2 className="font-semibold uppercase tracking-wider text-[13px]  text-gray-400 flex items-center gap-3 mb-1">
-                    <span>Dokumentasi</span>
-                  </h2>
-                  <span className=" text-[26px] font-bold ">
-                    Foto Perjalanan
-                  </span>
-                </div>
+                <LabelHeader title={"Dokumentasi"} desc={"Foto Perjalanan"} />
 
-                <div>
+                <div onClick={handleSeeAllDoc}>
                   <h2 className="cursor-pointer hover:text-gray-800 duration-300 font-semibold uppercase tracking-wider   text-xs md:text-[15px] group text-gray-600 flex items-start  ">
-                    <span>Lihat Seluruh Foto</span>
+                    <span>Lihat Seluruh Dokumentasi</span>
                     <ArrowUpRight />
                   </h2>
                 </div>

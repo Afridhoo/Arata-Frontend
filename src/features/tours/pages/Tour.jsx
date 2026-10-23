@@ -88,14 +88,9 @@ export default function Tour() {
             <div className="grid gap-10 mb-10">
               <CarouselPhotoDisplay
                 img={getImg(destination)}
-                aspect="2/3"
                 title={"Wisata"}
               />
-              <CarouselPhotoDisplay
-                img={getImg(hotel)}
-                aspect="2/3"
-                title={"Akomodasi"}
-              />
+              <CarouselPhotoDisplay img={getImg(hotel)} title={"Akomodasi"} />
             </div>
           ) : (
             <>
@@ -118,9 +113,7 @@ export default function Tour() {
             <TourGuides guide={normalizeDataGuide} />
           )}
 
-          {Review && Review?.length > 0 &&
-           <Tesimonial TESTIMONIALS={Review} />
-           }
+          {Review && Review?.length > 0 && <Tesimonial TESTIMONIALS={Review} />}
 
           <AccordionUse data={DataAccordion} fullSize={true} />
         </main>

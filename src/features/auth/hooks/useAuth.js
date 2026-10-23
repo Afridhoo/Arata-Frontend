@@ -62,14 +62,14 @@ export function UseSignOut() {
   });
 }
 
-
-
 export function UseGetMe() {
   return useQuery({
     queryKey: ["User"],
     queryFn: GetMe,
-
     retry: false,
+    staleTime: 5 * 60 * 1000,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
   });
 }
 

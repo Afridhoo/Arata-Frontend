@@ -1,23 +1,18 @@
 import NewLoading from "@/components/loading/NewLoading";
-import { UseGetHistoriesMe, UseGetHistoriesMeId } from "./UseGetHistoriesMe";
+import { UseGetHistoriesMe } from "./UseGetHistoriesMe";
 import { EmptySimpleUse } from "@/components/EmptySimpleUse";
 import { LucideUserRoundSearch, LucideLineChart } from "lucide-react";
 import { formatDateId } from "@/utils/convertDate";
 import TableBookingAdmin from "@/admin/BookingAdmin/components/BookingAdmin/TableBookingAdmin";
 import TablesAdmin from "@/admin/GlobalComponents/TablesAdmin";
 import { infoHistories } from "./InfoHistories";
-import PopUpDetailHistories from "./components/PopUpDetailHistories";
+import { useNavigate } from "react-router-dom";
 
 export default function HistoriesGuide() {
   const { data: HistoriesMe } = UseGetHistoriesMe();
-  const {
-    mutate: InsertId,
-    isPending,
-    data: DetailHistories,
-    reset: resetDetail,
-  } = UseGetHistoriesMeId();
+  const navigate = useNavigate();
 
-  if (!HistoriesMe || isPending) return <NewLoading />;
+  if (!HistoriesMe) return <NewLoading />;
 
   if (HistoriesMe?.length === 0)
     return (
@@ -39,17 +34,10 @@ export default function HistoriesGuide() {
   ];
 
   const filterVal = HistoriesMe?.map((el) => {
-    const {
-      getTour,
-      lastAssignedDate,
-      guideReview,
-      histories,
-      _id,
+    const { getTour, lastAssignedDate, guideReview, histories, totalsHanlde } =
+      el;
 
-      totalsHanlde,
-    } = el;
-
-    const { name } = getTour;
+    const { name, _id } = getTour;
     const { rating, totalsRating } = guideReview;
 
     const { location } = histories;
@@ -69,15 +57,11 @@ export default function HistoriesGuide() {
   });
 
   function handleEdit(id) {
-    InsertId({ id });
+    navigate(`/Documentation/${id}`);
   }
 
   return (
     <div className="p-10 pt-5">
-      {DetailHistories?.length > 0 && (
-        <PopUpDetailHistories value={DetailHistories} onClose={resetDetail} />
-      )}
-
       <TablesAdmin
         stats={info}
         headline={"Lihat History Memandu"}

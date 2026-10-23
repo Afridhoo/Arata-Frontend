@@ -19,7 +19,7 @@ export default function PopupUpdateDestination({
   onSaveUpdate,
   handleDeleteDoc,
 }) {
-  const { handleUpdate, documentationTour } = value;
+  const { handleUpdate, documentationTour, idGuideIdentity } = value;
 
   const { _id, status, coordinates: destCoords } = handleUpdate;
   const {
@@ -80,6 +80,7 @@ export default function PopupUpdateDestination({
     const formatCoordinatesMe = [locationMe, destCoords];
 
     formData.append("coordsMeAndDest", JSON.stringify(formatCoordinatesMe));
+    formData.append("GuideIdentityUploadDoc", idGuideIdentity);
 
     const { imageDocumentation: imgDoc } = destinations;
     const entriesVal = Object.entries(destinations);
@@ -102,7 +103,6 @@ export default function PopupUpdateDestination({
 
     if (typeof locationMe === "string") return toast.error(locationMe);
 
-    
     onSave(formData);
   }
 

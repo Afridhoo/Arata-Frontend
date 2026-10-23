@@ -10,13 +10,8 @@ import { useRef, useState } from "react";
 import { DialogUseSimpleImg } from "./DialogUseSimpleImg";
 import Autoplay from "embla-carousel-autoplay";
 
-export function CarouselPhotoDisplay({
-  img,
-  isDown,
-  RenderText,
-  aspect = "5/3",
-  title,
-}) {
+
+export function CarouselPhotoDisplay({ img, isDown, RenderText,  title }) {
   const [numDisplay, setNumDisplay] = useState(null);
   const [isOpenDialog, setIsOpenDialog] = useState(null);
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
@@ -31,6 +26,7 @@ export function CarouselPhotoDisplay({
     }
     setIsOpenDialog(null);
   }
+
 
  
 
@@ -66,18 +62,18 @@ export function CarouselPhotoDisplay({
             key={index}
             Render={
               <CarouselItem
-                className="basis-1/2 pl-4 cursor-pointer"
+                className={`basis-1/5 pl-4 cursor-pointer`}
                 onClick={() => setIsOpenDialog(img)}
               >
-                <div
-                  key={index}
-                  className={`aspect-[${aspect}]`}
-                >
-                  <img src={img} className="w-full h-full  rounded-xl object-cover" />
+                <div key={index} className={` aspect-[1/1]`}>
+                  <img
+                    src={img}
+                    className="w-full h-full  rounded-xl object-cover"
+                  />
                 </div>
               </CarouselItem>
             }
-            RenderText={RenderText || `Gambar Ke ${index}`}
+            RenderText={RenderText || `Gambar Ke ${index + 1}`}
           />
         ))}
       </CarouselContent>

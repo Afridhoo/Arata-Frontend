@@ -21,6 +21,7 @@ import { DrawerForBusLocation } from "@/components/DrawerForBusLocation";
 import { LucideRoute } from "lucide-react";
 import { formatMarkerCoords } from "./FormatMarker";
 import { Button } from "../ui/button";
+import LabelHeader from "../LabelHeader";
 
 export default function MapLocationTour({
   tour,
@@ -56,7 +57,7 @@ export default function MapLocationTour({
       const getCoordsLoc = concatVal?.map((el) => el.coordinates);
       if (!coordsBus) InsertLatlng({ coordinates: getCoordsLoc });
       if (coordsBus)
-      InsertLatlng({ coordinates: getCoordsLoc, coordsBus: coordsBus });
+        InsertLatlng({ coordinates: getCoordsLoc, coordsBus: coordsBus });
     }
   }
 
@@ -76,19 +77,14 @@ export default function MapLocationTour({
 
   return (
     <section className="py-20 border-b border-gray-100">
-      <h2 className="text-sm font-medium text-gray-400 uppercase tracking-widest mb-4">
-        Rute Perjalanan
-      </h2>
-      <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-10 leading-snug">
-        Peta Lokasi
-      </h3>
+      <LabelHeader title={"Rute Perjalanan"} desc={"Peta Lokasi"} />
 
-      <div className="flex flex-col lg:flex-row gap-8 items-start">
+      <div className="pt-5 flex  gap-8 items-start">
         <div
           className={` ${
             isFullMap
-              ? "fixed inset-0 z-[9]   md:w-full md:h-full rounded-none"
-              : "relative z-[1] w-full  h-[350px] md:h-[480px] rounded-xl border border-gray-200"
+              ? "fixed inset-0 z-[9]  md:max-w-full md:max-h-full "
+              : "relative z-[1] max-w-full w-xl h-[350px] md:h-[480px] rounded-2xl border border-gray-200"
           }`}
         >
           <MapContainer

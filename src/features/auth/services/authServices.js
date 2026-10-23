@@ -19,9 +19,15 @@ export async function SignIn(value) {
 }
 
 export async function GetMe() {
-  const GetAccountMe = await callAxiosApi.get(`users/getAccount`);
+  try {
+    const GetAccountMe = await callAxiosApi.get(`users/getAccount`);
 
-  return GetAccountMe.data.data.value;
+    return GetAccountMe.data.data.value;
+  } catch (error) {
+    if (error.response?.status === 401 || error.response?.status === 500)
+      return null;
+    throw error;
+  }
 }
 
 export async function UpdatePassword(value) {

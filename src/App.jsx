@@ -38,6 +38,8 @@ import TripMeId from "./features/TripMeHistory/TripMeId";
 import Services from "./pages/Services";
 import { Toaster } from "./components/ui/sonner";
 import AddNewCategories from "./admin/AddNewCategories/AddNewCategories";
+import DetailHistories from "./guides/historiesGuide/components/DetailHistories";
+
 
 const router = createBrowserRouter([
   {
@@ -59,6 +61,7 @@ const router = createBrowserRouter([
       { path: "/tripMe/:id", Component: TripMeId },
       { path: "/favorite", Component: Favorite },
       { path: "/services", Component: Services },
+      { path: "/Documentation/:id", Component: DetailHistories },
     ],
   },
   {
