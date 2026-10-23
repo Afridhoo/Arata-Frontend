@@ -9,11 +9,12 @@ import HoverCardUse from "./HoverCardUse";
 import { useRef, useState } from "react";
 import { DialogUseSimpleImg } from "./DialogUseSimpleImg";
 import Autoplay from "embla-carousel-autoplay";
+import { useIsMobile } from "@/hooks/use-mobile";
 
-
-export function CarouselPhotoDisplay({ img, isDown, RenderText,  title }) {
+export function CarouselPhotoDisplay({ img, isDown, RenderText, title }) {
   const [numDisplay, setNumDisplay] = useState(null);
   const [isOpenDialog, setIsOpenDialog] = useState(null);
+  const checkIsMobile = useIsMobile();
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
 
   function handleDownload() {
@@ -26,9 +27,6 @@ export function CarouselPhotoDisplay({ img, isDown, RenderText,  title }) {
     }
     setIsOpenDialog(null);
   }
-
-
- 
 
   return (
     <Carousel
@@ -62,7 +60,7 @@ export function CarouselPhotoDisplay({ img, isDown, RenderText,  title }) {
             key={index}
             Render={
               <CarouselItem
-                className={`basis-1/5 pl-4 cursor-pointer`}
+                className={` ${checkIsMobile ? "basis-1/2" : "basis-1/5"} pl-4 cursor-pointer`}
                 onClick={() => setIsOpenDialog(img)}
               >
                 <div key={index} className={` aspect-[1/1]`}>

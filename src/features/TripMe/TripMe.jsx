@@ -282,7 +282,7 @@ export default function TripMe() {
                 </div>
               </div>
 
-              <div className="flex items-center  gap-15  max-w-full mt-8">
+              <div >
                 <CarouselPhotoDisplay
                   img={getImgDocumentation?.slice(0, 10)}
                   isDown={true}
