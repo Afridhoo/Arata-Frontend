@@ -2,7 +2,7 @@ import { IoImage } from "react-icons/io5";
 import { formatDateId } from "../../../../utils/convertDate";
 import FileImgUpload from "./FileImgUpload";
 import Note from "./Note";
-import WatchUploadImg from "./WatchUploadImg";
+
 import { useForm } from "react-hook-form";
 
 import { useState } from "react";
@@ -100,8 +100,6 @@ export default function Documentation({
     const getUpdate = isValidUpdate.map((el, idx) =>
       el instanceof File ? el : isValidImgOld[idx],
     );
-
-    
 
     const getNewImg = getUpdate.filter((el) => el instanceof File);
     const getOldImg = getUpdate.filter((el) => typeof el === "string");
@@ -207,16 +205,19 @@ export default function Documentation({
 
                 <Note register={register(`documentation.${idx}.note`)} />
 
-                <WatchUploadImg getWatch={getImgOld} idx={idx} />
+                <BadgeSimpleUse
+                  desc={`Foto Diupload : ${getImgOld?.[idx]?.length}`}
+                  variant={"default"}
+                />
                 <div className="grid gap-5 items-center">
                   <div>
                     {doc.images && doc.images.length > 0 && (
-                      <div className="space-y-1.5">
+                      <div className="space-y-1.5 ">
                         <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
                           Foto Dokumentasi
                         </span>
 
-                        <div className="flex flex-wrap gap-10 pt-0.5 max-w-[300px]">
+                        <div className="flex max-h-[100px] flex-wrap overflow-y-auto  max-w-full  gap-10 pt-0.5 ">
                           {getImgOld[idx]?.map((img, imgIdx) => {
                             const chekingUpload =
                               getUpload?.[idx]?.[imgIdx]?.[0];
@@ -246,7 +247,7 @@ export default function Documentation({
                                       idxClick: idx,
                                     })
                                   }
-                                  className="w-16 h-16 sm:w-22 sm:h-22 rounded-lg object-cover border border-slate-200 shadow-xs hover:scale-105 transition-transform duration-150  cursor-pointer"
+                                  className="w-16 h-16 md:w-25 md:h-25  rounded-lg object-cover  cursor-pointer"
                                 />
 
                                 {cheking && (

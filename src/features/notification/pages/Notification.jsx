@@ -13,7 +13,7 @@ export default function Notification() {
   const { data: Notif, isPending } = UseGetNotif();
   const { isUserNotLogin } = useAuth();
 
-  if (isUserNotLogin) return <UserNotExist />;
+  if (!isUserNotLogin) return <UserNotExist />;
   if (isPending) return <NewLoading />;
 
   const getLength = Notif?.filter((el) => !el.isRead)?.length;

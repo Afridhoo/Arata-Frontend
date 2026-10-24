@@ -119,7 +119,7 @@ export default function PopupUpdateDestination({
       <div className=" bg-muted shadow-2xl rounded-4xl  max-w-full  overflow-y-auto  md:p-5">
         <Header _id={_id} onCancel={onCancel} />
 
-        <div className=" p-5 max-w-4xl max-h-[400px]">
+        <div className=" p-2 md:p-5  max-w-4xl max-h-[400px]">
           <form
             id="postDocumentation"
             onSubmit={handleSubmit(handlePostDoc)}

@@ -1,7 +1,6 @@
 import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 
-
 export default function FileImgUpload({
   register,
 
@@ -15,10 +14,10 @@ export default function FileImgUpload({
         accept="image/*"
         multiple={noMultiUpload ? false : true}
         type="file"
+        capture="environment"
         {...register}
       />
       <FieldDescription>Silahkan Pilih Gambar</FieldDescription>
     </Field>
-
   );
 }
