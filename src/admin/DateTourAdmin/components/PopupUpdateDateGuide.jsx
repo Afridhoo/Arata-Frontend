@@ -42,8 +42,6 @@ export default function PopupUpdateDateGuide({
     ?.map((s) => ({ _id: s._id, date: s.date }))
     ?.filter((s) => s.date);
 
-  
-
   const getOldTime = concatVal?.map((s) => s.time)?.filter((s) => s);
 
   const [date, setDate] = useState(getOldDate);
@@ -55,7 +53,7 @@ export default function PopupUpdateDateGuide({
 
     const { from, to } = newDate || {};
 
-    const check = date?.find((e) => e._id === _id);
+    const check = date?.find((e) => e?._id === _id);
     const getLengthDate = differenceInDays(new Date(to), new Date(from)) + 1;
 
     const formatTime = Array.from({ length: getLengthDate })?.map((_, i) => ({

@@ -6,12 +6,6 @@ export async function getTrip() {
   return response.data.data;
 }
 
-export async function postReqLocation({ tourId }) {
-  const response = await callAxiosApi.get(`tours/reqLocationGuide/${tourId}`);
-
-  return response.data;
-}
-
 export async function GetLineRoad({ coordinates, coordsBus, idLocations }) {
   const response = await callAxiosApi.post(`tours/getLineOpenRouter`, {
     coordinates,

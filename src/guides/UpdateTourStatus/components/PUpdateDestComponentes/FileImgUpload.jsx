@@ -12,7 +12,7 @@ export default function FileImgUpload({
       <Input
         id="picture"
         accept="image/*"
-        // multiple={noMultiUpload ? false : true}
+        multiple={noMultiUpload ? false : true}
         type="file"
         capture="environment"
         {...register}

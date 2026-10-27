@@ -1,11 +1,4 @@
-import {
-  FiType,
-  FiClock,
-  FiUsers,
-  FiDollarSign,
-  FiImage,
-  FiBookOpen,
-} from "react-icons/fi";
+import { FiType, FiClock, FiUsers, FiDollarSign } from "react-icons/fi";
 import InputUseForm from "../../../components/InputUseForm";
 import { useForm } from "react-hook-form";
 import MapsContainer from "./MapsAdmin/MapsContainer";
@@ -120,23 +113,19 @@ export default function PopupPostTour({ onCancel, onSucsess, categories }) {
 
     const { hotel, destination } = formatLocation;
 
-    
     if (
       categoriesLocations?.length < [...hotel, ...destination]?.length ||
       !getIsValidId
     )
-    return toast.error("Kategori Belum Dipilih", {
-      description: "Pastikan Anda Mengisi Setiap Kategori",
-    });
-    
+      return toast.error("Kategori Belum Dipilih", {
+        description: "Pastikan Anda Mengisi Setiap Kategori",
+      });
+
     formData.append("startLocation", JSON.stringify(startLocations));
     formData.append("locations", JSON.stringify(formatLocation));
-    
+
     formData.append("categories", getIsValidId);
     formData.append("imageCover", imageCover?.[0]);
-
-    
-
 
     onSucsess(formData);
   }
@@ -345,7 +334,6 @@ export default function PopupPostTour({ onCancel, onSucsess, categories }) {
             valueLocationsFinal={saveLocation}
             setMapsActive={setMapIsActive}
             setStartLocations={setStartLocations}
-            
           />
         </div>
       )}

@@ -150,12 +150,12 @@ export default function RangeTime({ schedule, _id, setTime, time, text }) {
                       <Input
                         type={"text"}
                         defaultValue={
-                          text.find((s) => s.index === i && s.idxTime === index)
+                          text?.find((s) => s.index === i && s?.idxTime === index)
                             ?.value
                         }
                         onChange={(text) =>
                           handleText({
-                            value: text.target.value,
+                            value: text?.target.value,
                             index: i,
                             idxTime: index,
                             _id,

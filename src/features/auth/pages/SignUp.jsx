@@ -5,7 +5,7 @@ import { chekingUseForm } from "../../../utils/chekingUseForm";
 
 import { SignUpShadcn } from "../components/SignUpShadcn";
 import { toast } from "sonner";
-import NewLoading from "@/components/loading/NewLoading";
+
 import { useEffect, useState } from "react";
 import InputOTPForm from "../components/InputOtpForm";
 import { useAuth } from "@/utils/AuthContext";
