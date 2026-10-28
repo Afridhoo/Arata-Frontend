@@ -11,7 +11,7 @@ import {
   UseInsertTour,
 } from "../hooks/useTourAdmin";
 import PopupPostTour from "../components/PopupPostTour";
-import Popup from "../../../components/Popup";
+
 import { formatCurrencyId } from "../../../utils/convertCurrency";
 import { FiMapPin } from "react-icons/fi";
 import NewLoading from "@/components/loading/NewLoading";
@@ -22,10 +22,10 @@ import { GetParams } from "@/features/tours/components/Params";
 
 export default function ToursAdmin() {
   const [page, setPage] = useState(1);
-
   const [paramsFilter] = useSearchParams();
-
   const params = GetParams(paramsFilter);
+  
+
 
   const { data: DataTourAndCategories, isPending: LoadTour } = UseGetTours({
     page,
@@ -37,10 +37,7 @@ export default function ToursAdmin() {
   const getStatsTour = statsTour();
 
   const [isActivePost, setIsActivePost] = useState(null);
-
   const [valueEdit, setValueEdit] = useState(null);
-  const [PopUpIsActive, setPopUpIsActive] = useState(null);
-  const [idDelete, setIdDelete] = useState("");
 
   const { tour: Tour = [], categories = [] } = DataTourAndCategories || {};
 
@@ -71,14 +68,8 @@ export default function ToursAdmin() {
     setIsActivePost(true);
   }
 
-  function handleDelete() {
-    DeleteTour({ idDelete });
-    displayPopUp();
-  }
-
-  function displayPopUp(id) {
-    setPopUpIsActive((popup) => !popup);
-    setIdDelete(id);
+  function handleDelete(idTour) {
+    DeleteTour({ idDelete: idTour });
   }
 
   const filterVal = Tour?.map((el) => ({
@@ -90,6 +81,7 @@ export default function ToursAdmin() {
       el.slot,
       `${el.locations.destination.length} Lokasi`,
       `${el.maxGroupSize - el.slot || 0} Users`,
+      `${el.isActiveTour ? "Aktif" : "Tidak Aktif"}`,
     ],
   }));
 
@@ -100,9 +92,8 @@ export default function ToursAdmin() {
     "slot",
     "Destination",
     "UserBooking",
+    "Tour Aktif",
   ];
-
-
 
   return (
     <div className="p-10 pt-5">
@@ -111,17 +102,6 @@ export default function ToursAdmin() {
           onCancel={onCancel}
           onSucsess={onSucsessPost}
           categories={categories}
-        />
-      )}
-
-      {PopUpIsActive && (
-        <Popup
-          onConfirm={handleDelete}
-          onCancel={displayPopUp}
-          title={"Menghapus Tour"}
-          message={
-            "Apakah Anda Yakin Ingin Menghapus Tour Ini , Semua Data Mengenai Tour Ini Akan Hilang ,Pastikan Tidak Ada Pesanan Yang Sedang Berjalan"
-          }
         />
       )}
 
@@ -147,8 +127,9 @@ export default function ToursAdmin() {
       <TableBookingAdmin
         valueTable={filterVal}
         handleEdit={handleSetValueEdit}
+        deleteType={"tour"}
         tableHead={tableHead}
-        handleDelete={displayPopUp}
+        handleDelete={handleDelete}
       />
 
       <div>

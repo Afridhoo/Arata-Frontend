@@ -8,7 +8,7 @@ import Header from "./PUpdateDestComponentes/Header";
 import DisplayMainElPostDoc from "./PUpdateDestComponentes/DisplayMainElPostDoc";
 import { getCoordinatesMe } from "../../../utils/apiPositionMe";
 import { useEffect } from "react";
-import { toastError } from "@/components/UseToastSimple";
+
 import { toast } from "sonner";
 
 export default function PopupUpdateDestination({
@@ -49,7 +49,7 @@ export default function PopupUpdateDestination({
     },
   });
 
-  const displayToastErr = (text) => toastError({ title: text });
+  const displayToastErr = (text) => toast.error( text );
 
   function handleImgView(dataImgIdx) {
     const { img, imgIdx, getUpload, idxClick } = dataImgIdx;

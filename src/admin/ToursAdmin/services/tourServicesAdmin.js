@@ -44,5 +44,5 @@ export async function DeleteLocationTour({ idTour, idLocation }) {
 
 export async function DeleteTour({ idDelete }) {
   const response = await callAxiosApi.delete(`tours/${idDelete}`);
-  return response;
+  return response.data;
 }

@@ -10,7 +10,6 @@ import {
   UpdateTour,
 } from "../services/tourServicesAdmin";
 
-import { toastSucsess } from "@/components/UseToastSimple";
 import { toast } from "sonner";
 
 export function UseGetStatsTour() {
@@ -47,8 +46,7 @@ export function UseGetLocation() {
 
     onError: () => {
       toast.error("Lokasi Tidak DiTemukan", {
-        description:
-          "Silahkan Cari Lokasi Lain , Data Dari Lokasi Ini Tidak Tersedia",
+        description: "Data Dari Lokasi Yang Anda Cari Ini Tidak Tersedia",
       });
     },
   });
@@ -60,8 +58,7 @@ export function UseGetLocationLatlng() {
 
     onError: () => {
       toast.error("Lokasi Tidak DiTemukan", {
-        description:
-          "Silahkan Cari Lokasi Lain , Data Dari Lokasi Ini Tidak Tersedia",
+        description: "Data Dari Lokasi Yang Anda Cari Ini Tidak Tersedia",
       });
     },
   });
@@ -125,16 +122,19 @@ export function UseDeleteTour() {
   return useMutation({
     mutationFn: DeleteTour,
 
-    onSuccess: () => {
-      toast.success("Berhasil Menghapus Data Tour");
-      toastSucsess({ message: "Menghapus Tour", title: "Berhasil" });
+    onSuccess: (payload) => {
+      toast.success("Berhasil Mengupdate Status Tour", {
+        description: payload?.message,
+      });
 
       query.invalidateQueries({ queryKey: ["Tours"] });
       query.invalidateQueries({ queryKey: ["ToursStatsAdmin"] });
     },
 
-    onError: () => {
-      toast.error("Gagal Menghapus Data Tour");
+    onError: (err) => {
+      toast.error("Gagal Menghapus Data Tour", {
+        description: err?.response?.data?.message,
+      });
     },
   });
 }

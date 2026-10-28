@@ -70,6 +70,8 @@ export default function FilterList({
       filter.hotel = getVal(checkedHotel, "categoriesTour");
 
     if (getValOneCheked("booking")) filter.booking = getValOneCheked("booking");
+    if (getValOneCheked("tour") !== undefined)
+      filter.tourStatus = getValOneCheked("tour");
 
     const checkRange = rangeNumber.every((x, i) => x === DEFAULT_RANGE[i]);
 
@@ -78,6 +80,9 @@ export default function FilterList({
         description: "Silahkan Pilih Kategori Sesuai Kebutuhan Anda",
       });
     setOpen(false);
+
+    
+
 
     navigate(
       `/${route}?${HandleQuery({ name: searchQuery, ...filter, rangeNumber })}`,
@@ -92,6 +97,10 @@ export default function FilterList({
     booking: [
       { text: "Booking Terbanyak", value: "booking-1", check: "booking" },
       { text: "Booking Terdikit", value: "booking+1", check: "booking" },
+    ],
+    tour: [
+      { text: "Tour Aktif", value: "active", check: "tour" },
+      { text: "Tour Tidak Aktif", value: "not-active", check: "tour" },
     ],
   };
 
@@ -152,6 +161,12 @@ export default function FilterList({
               checked={checked}
               value={listFilter.booking}
               label={"Booking"}
+            />
+            <CheckboxDateTour
+              setChecked={setChecked}
+              checked={checked}
+              value={listFilter.tour}
+              label={"Tour"}
             />
           </div>
 

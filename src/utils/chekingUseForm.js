@@ -1,4 +1,4 @@
-import { toastError } from "@/components/UseToastSimple";
+import { toast } from "sonner";
 
 export function chekingUseForm(value, type) {
   const Arrtype = ["SignUp", "ForgotPassword", "UpdatePassword"];
@@ -6,7 +6,7 @@ export function chekingUseForm(value, type) {
   const valueArr = Object.values(value);
 
   if (valueArr.includes("")) {
-    toastError({ title: "Silahkan Isi Semua Input" });
+    toast.error("Silahkan Isi Semua Input");
 
     return false;
   }
@@ -15,7 +15,7 @@ export function chekingUseForm(value, type) {
     const { confirmPassword, newPassword } = value;
 
     if (confirmPassword !== newPassword) {
-      toastError({ title: "Password Tidak Sama Silahkan Cek Ulang" });
+      toast.error("Password Tidak Sama Silahkan Cek Ulang");
 
       return false;
     }

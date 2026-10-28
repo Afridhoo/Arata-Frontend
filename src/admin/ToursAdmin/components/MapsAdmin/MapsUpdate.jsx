@@ -58,7 +58,7 @@ export default function MapsUpdate({
   const [position, setPosition] = useState();
   const [tabs, setTabs] = useState("destination");
   const [geoJson, setGeoJson] = useState();
-  const [isActive, setIsActive] = useState();
+  const [isActive, setIsActive] = useState(null);
   const [concatValue, setConcatValue] = useState(initialValue);
 
   useEffect(() => {
@@ -90,15 +90,18 @@ export default function MapsUpdate({
   }
 
   function handleDelete(idLocation) {
-    const cheking = concatValue.find((el) => el.id === idLocation && el.image);
-    const getConcatVal = concatValue.find((el) => el.id === idLocation);
+    const cheking = concatValue.find((el) => el._id === idLocation && el.image);
+    const getConcatVal = concatValue.find((el) => el._id === idLocation);
+
+
+    
 
     if (cheking) {
       DeleteLocation({ idTour, idLocation, setConcatValue });
       handleDeleteLine(cheking);
     } else {
       setConcatValue((concatValue) =>
-        concatValue.filter((el) => el.id !== idLocation),
+        concatValue.filter((el) => el._id !== idLocation),
       );
 
       handleDeleteLine(getConcatVal);
@@ -143,8 +146,6 @@ export default function MapsUpdate({
     saveLocationUpdate(concatValue);
     setMapIsActive(false);
   }
-
-  
 
   return (
     <div className="w-full fixed inset-0 z-[9]  h-full border border-gray-200 ">
@@ -236,8 +237,6 @@ export default function MapsUpdate({
           {destinations && (
             <DrawerLocationsAdmin
               value={destinations}
-              
-              
               status={"destination"}
               textRender={"Wisata"}
               handleCheckDestination={handleCLick}
@@ -248,7 +247,6 @@ export default function MapsUpdate({
           {hotels && (
             <DrawerLocationsAdmin
               value={hotels}
-              
               status={"hotel"}
               textRender={"Hotel"}
               handleCheckDestination={handleCLick}

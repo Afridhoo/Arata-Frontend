@@ -7,11 +7,15 @@ export const GetParams = (paramsFilter) => {
   const categories = data?.value || [];
   const getParams = (val) => paramsFilter?.get(val);
 
+  
+
   const handleSplit = (val) => val?.split(",");
 
   const getDest = handleSplit(getParams("dest"));
   const getHotel = handleSplit(getParams("hotel"));
   const getNameTour = handleSplit(getParams("name"));
+
+  const tourStatus = getParams("tourStatus");
 
   const booking = getParams("booking");
 
@@ -37,6 +41,7 @@ export const GetParams = (paramsFilter) => {
     categoriesDest,
     categoriesHotel,
     booking,
+    tourStatus,
   };
 
   const check = paramsFilter?.size === 0 ? { NumberRangeValue } : value;
