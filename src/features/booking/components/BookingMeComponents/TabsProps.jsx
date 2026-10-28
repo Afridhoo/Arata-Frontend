@@ -18,7 +18,7 @@ const statusStyles = {
 
 export default function TabsProps({
   value,
-
+  handleCancelBooking,
   statusActive,
   userMe,
   handlePostReview,
@@ -60,8 +60,6 @@ export default function TabsProps({
     { value: 5, label: "Rating 5" },
   ];
 
-
-
   return (
     <div className="flex flex-wrap flex-col gap-6 p-4 md:p-9 max-w-7xl mx-auto">
       {getBooking?.map((el) => {
@@ -78,15 +76,18 @@ export default function TabsProps({
             register: "message",
             type: "text",
             default: message,
+            hidden: false,
           },
           {
             register: "idBooking",
-            type: "hidden",
+            type: "text",
             default: el._id,
+            hidden: true,
           },
           {
             register: "tourid",
-            type: "hidden",
+            type: "text",
+            hidden: true,
             default: el.tour._id,
           },
         ];
@@ -121,24 +122,38 @@ export default function TabsProps({
                     {el.tour.name}
                   </h3>
                 </div>
-                <div className="flex items-center gap-2">
-                  {idDoc && (
-                    <Link to={`/tripMe/${idDoc}`}>
-                      <BadgeSimpleUse
-                        desc={"Dokumentasi Perjalanan"}
-                        icon={<LucideArrowUpRight />}
-                        variant={"default"}
+                <div className="flex flex-wrap  items-center justify-between  w-full max-w-full ">
+                  <div className="flex flex-wrap items-center gap-2">
+                    {idDoc && (
+                      <Link to={`/tripMe/${idDoc}`}>
+                        <BadgeSimpleUse
+                          desc={"Dokumentasi Perjalanan"}
+                          icon={<LucideArrowUpRight />}
+                          variant={"default"}
+                        />
+                      </Link>
+                    )}
+                    {idDoc && rating && (
+                      <DialogDelete
+                        title={`Apakah Anda Yakin Ingin Menghapus Review Tour ${el?.tour?.name}`}
+                        desc={`Review ${el?.tour?.name} Yang Anda Hapus Masih Bisa Anda Tambahkan Nanti`}
+                        text={"Hapus Review"}
+                        onSubmit={() => handleDeleteReview(idReview)}
+                        defaultVariant={"outline"}
                       />
-                    </Link>
-                  )}
-                  {idDoc && rating && (
-                    <DialogDelete
-                      title={`Apakah Anda Yakin Ingin Menghapus Review Tour ${el?.tour?.name}`}
-                      desc={`Review ${el?.tour?.name} Yang Anda Hapus Masih Bisa Anda Tambahkan Nanti`}
-                      text={"Hapus Review"}
-                      onSubmit={() => handleDeleteReview(idReview)}
-                    />
-                  )}
+                    )}
+                  </div>
+                  <div>
+                    {el.status === "pending" && (
+                      <DialogDelete
+                        title={`Apakah Anda Yakin Ingin Membatalkan Booking ${el?.tour?.name}`}
+                        desc={`Jika Ada Kendala Saat Pemesanan Booking ${el?.tour?.name} Silahkan Hubungi Admin Dihalaman Services`}
+                        text={"Batalkan Booking"}
+                        textSubmit={"Batalkan Booking"}
+                        onSubmit={() => handleCancelBooking(el._id)}
+                      />
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -183,6 +198,7 @@ export default function TabsProps({
                       handleSubmit={handleSubmit}
                       variantBtn={"default"}
                       defaultValueSelect={rating}
+                      textAreaIsActive={true}
                       titleSelect={"Masukan Rating"}
                     />
                   ) : (
@@ -190,6 +206,7 @@ export default function TabsProps({
                       textRender={"Beri Review"}
                       titleSelect={"Masukan Rating"}
                       titleForm={`Review Tour ${el?.tour?.name}`}
+                      textAreaIsActive={true}
                       fields={fieldsForInput}
                       selectOptions={fieldsForSelect}
                       handleSubmit={handleSubmit}

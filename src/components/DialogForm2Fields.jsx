@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label";
 
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { Textarea } from "./ui/textarea";
 
 export function DialogForm2Fields({
   textRender,
@@ -26,6 +27,7 @@ export function DialogForm2Fields({
   defaultValueSelect,
   variantBtn,
   titleSelect,
+  textAreaIsActive,
 }) {
   const { handleSubmit: handleSubmitUseForm, register } = useForm();
 
@@ -63,35 +65,45 @@ export function DialogForm2Fields({
             {fields?.map((el) => (
               <Field className={"mb-1"}>
                 <Label>{el.name}</Label>
-                <Input
-                  defaultValue={el.default && el.default}
-                  type={el.type}
-                  placeholder={el.placeholder && el.placeholder}
-                  {...register(el.register)}
-                />
+                {textAreaIsActive ? (
+                  <Textarea
+                    defaultValue={el.default && el.default}
+                    type={el.type}
+                    hidden={el.hidden}
+                    placeholder={el.placeholder && el.placeholder}
+                    {...register(el.register)}
+                  />
+                ) : (
+                  <Input
+                    defaultValue={el.default && el.default}
+                    type={el.type}
+                    hidden={el.hidden}
+                    placeholder={el.placeholder && el.placeholder}
+                    {...register(el.register)}
+                  />
+                )}
               </Field>
             ))}
           </FieldGroup>
 
           {selectOptions?.length > 0 && (
             <div className="-mt-6 mb-2">
-              
-                <Label>{titleSelect}</Label>
-                <select
-                  defaultValue={defaultValueSelect}
-                  className="w-full rounded-md border mt-2 p-2 cursor-pointer"
-                  {...register("selectOptions")}
-                >
-                  {selectOptions?.map((s) => (
-                    <option
-                      key={s.value}
-                      value={s.value}
-                      className="bg-gray-200 text-gray-700 py-1 font-semibold"
-                    >
-                      {s.label}
-                    </option>
-                  ))}
-                </select>
+              <Label>{titleSelect}</Label>
+              <select
+                defaultValue={defaultValueSelect}
+                className="w-full rounded-md border mt-2 p-2 cursor-pointer"
+                {...register("selectOptions")}
+              >
+                {selectOptions?.map((s) => (
+                  <option
+                    key={s.value}
+                    value={s.value}
+                    className="bg-gray-200 text-gray-700 py-1 font-semibold"
+                  >
+                    {s.label}
+                  </option>
+                ))}
+              </select>
             </div>
           )}
 

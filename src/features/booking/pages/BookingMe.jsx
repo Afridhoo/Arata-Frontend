@@ -1,4 +1,4 @@
-import { UseGetBookingMe } from "../hooks/useBooking";
+import { UseCancelBooking, UseGetBookingMe } from "../hooks/useBooking";
 
 import { useState } from "react";
 import TabsProps from "../components/BookingMeComponents/TabsProps";
@@ -15,6 +15,7 @@ import {
 export default function BookingMe() {
   const { mutate: InsertReview, isPending: loadPost } = UseCreateReview();
   const { mutate: DeleteReview, isPending: loadDelete } = UseDeleteReview();
+  const { mutate: CancelBooking, isPending: loadCancel } = UseCancelBooking();
 
   const { isUserNotLogin, user } = useAuth();
   const { data: Booking, isPending } = UseGetBookingMe({
@@ -24,7 +25,7 @@ export default function BookingMe() {
   const [isActive, setIsActive] = useState("semua");
 
   if (!isUserNotLogin) return <UserNotExist />;
-  if (isPending || loadPost || loadDelete) return <NewLoading />;
+  if (isPending || loadPost || loadDelete || loadCancel) return <NewLoading />;
 
   function handlePostReview(value) {
     InsertReview({ value });
@@ -32,6 +33,10 @@ export default function BookingMe() {
 
   function handleDeleteReview(id) {
     DeleteReview({ id });
+  }
+
+  function handleCancelBooking(idBooking) {
+    CancelBooking({ id: idBooking });
   }
 
   const tabs = ["semua", "pending", "confirmed", "finished", "cancelled"];
@@ -64,6 +69,7 @@ export default function BookingMe() {
         value={chekingVal}
         statusActive={isActive}
         userMe={user}
+        handleCancelBooking={handleCancelBooking}
         handlePostReview={handlePostReview}
         handleDeleteReview={handleDeleteReview}
       />

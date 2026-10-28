@@ -6,7 +6,6 @@ import {
   InsertBooking,
 } from "../../booking/services/bookingServices";
 
-import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 export function UseInsertBooking() {
@@ -52,7 +51,6 @@ export function UseGetBookingById() {
 
 export function UseCancelBooking() {
   const query = useQueryClient();
-  const navigate = useNavigate();
 
   return useMutation({
     mutationFn: CancelBooking,
@@ -60,10 +58,11 @@ export function UseCancelBooking() {
     onSuccess: () => {
       query.invalidateQueries({ queryKey: ["Booking"] });
       toast.success("Berhasil Membatalkan Booking");
-      navigate("/booking");
     },
-    onError: () => {
-      toast.error("Gagal Membatalkan Booking");
+    onError: (err) => {
+      toast.error("Gagal Membatalkan Booking", {
+        description: err.response.data.message,
+      });
     },
   });
 }

@@ -14,14 +14,23 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 
-export function DialogDelete({ text, title, desc, onSubmit, defaultVariant , defaultCss  ,icon}) {
+export function DialogDelete({
+  text,
+  title,
+  desc,
+  onSubmit,
+  defaultVariant,
+  defaultCss,
+  icon,
+  textSubmit,
+}) {
   return (
     <AlertDialog>
       <AlertDialogTrigger
         render={
           <Button
             className={`cursor-pointer ${!defaultCss && " h-6 rounded-full text-xs"}`}
-            variant={defaultVariant  ||  "destructive" }
+            variant={defaultVariant || "destructive"}
           >
             {icon}
             {text}
@@ -45,7 +54,7 @@ export function DialogDelete({ text, title, desc, onSubmit, defaultVariant , def
             className={"cursor-pointer"}
             variant="destructive"
           >
-            Hapus
+            {textSubmit || "Hapus"}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
