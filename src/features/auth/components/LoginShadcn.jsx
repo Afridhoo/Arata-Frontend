@@ -24,7 +24,7 @@ export function LoginShadcn({ register }) {
 
   return (
     <div className="flex flex-col gap-6 ">
-      <Card >
+      <Card>
         <CardHeader className="text-center">
           <CardTitle className="text-xl">Selamat Datang Kembali</CardTitle>
           <CardDescription>
