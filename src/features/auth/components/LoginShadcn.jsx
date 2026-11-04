@@ -18,8 +18,9 @@ import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
 import { UseLoginByGoogle } from "../hooks/useAuth";
 import { GoogleLogin } from "@react-oauth/google";
+import { SpinnerBtn } from "@/components/SpinnerBtn";
 
-export function LoginShadcn({ register }) {
+export function LoginShadcn({ register, isPending }) {
   const { mutate: LoginByGoogle } = UseLoginByGoogle();
 
   return (
@@ -60,9 +61,12 @@ export function LoginShadcn({ register }) {
             </Field>
 
             <Field>
-              <Button type="submit" className={"cursor-pointer"}>
-                Login
-              </Button>
+              <SpinnerBtn
+                disabled={isPending}
+                text={isPending ? "Loading" : "Login "}
+                type={"submit"}
+                classNameBtn={"w-full"}
+              />
             </Field>
 
             <FieldSeparator className="mt-2  text-xs">

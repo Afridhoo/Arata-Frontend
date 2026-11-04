@@ -18,8 +18,9 @@ import { GoogleLogin } from "@react-oauth/google";
 import { LucideInfo } from "lucide-react";
 import { Link } from "react-router-dom";
 import { UseLoginByGoogle } from "../hooks/useAuth";
+import { SpinnerBtn } from "@/components/SpinnerBtn";
 
-export function SignUpShadcn({ register }) {
+export function SignUpShadcn({ register, isPending }) {
   const { mutate: LoginByGoogle } = UseLoginByGoogle();
 
   return (
@@ -87,9 +88,12 @@ export function SignUpShadcn({ register }) {
                 </Field>
               </Field>
               <Field>
-                <Button className={"cursor-pointer"} type="submit">
-                  Daftar Akun
-                </Button>
+                <SpinnerBtn
+                  disabled={isPending}
+                  text={isPending ? "Loading" : "Daftar Akun"}
+                  type={"submit"}
+                  classNameBtn={"w-full"}
+                />
               </Field>
               <FieldSeparator>Atau Lanjutkan Dengan</FieldSeparator>
               <Field>

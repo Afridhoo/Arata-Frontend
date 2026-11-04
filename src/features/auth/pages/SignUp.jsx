@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const { register, handleSubmit, control } = useForm();
-  const { mutate: SignUp, isSuccess } = UseSignUp();
+  const { mutate: SignUp, isSuccess, isPending } = UseSignUp();
   const { user } = useAuth();
 
   const navigate = useNavigate();
@@ -43,7 +43,11 @@ export default function SignUp() {
       <div className="flex w-full max-w-sm flex-col gap-6">
         <form onSubmit={handleSubmit(onSubmit)}>
           {!isActiveOtp && (
-            <SignUpShadcn register={register} setIsActiveOtp={setIsActiveOtp} />
+            <SignUpShadcn
+              register={register}
+              setIsActiveOtp={setIsActiveOtp}
+              isPending={isPending}
+            />
           )}
 
           {isActiveOtp && (
