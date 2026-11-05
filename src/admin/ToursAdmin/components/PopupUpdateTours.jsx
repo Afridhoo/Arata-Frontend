@@ -38,6 +38,7 @@ export default function PopupUpdateTours({
     startLocation,
     locations,
     soldOut,
+    isActiveTour,
   } = value;
 
   const [startCategories, setStartCategories] = useState(oldCategories);
@@ -152,8 +153,12 @@ export default function PopupUpdateTours({
   }
 
   const valueIsSoldOut = [
-    { value: false, label: "Active" },
+    { value: false, label: "Aktif Booking" },
     { value: true, label: "soldOut" },
+  ];
+  const valueIsActiveTour = [
+    { value: true, label: "Aktif" },
+    { value: false, label: "Non Aktif" },
   ];
 
   function handleCategoriesLocations(data) {
@@ -192,7 +197,7 @@ export default function PopupUpdateTours({
             <div className="flex mb-5  mt-5 gap-10 items-center">
               <div className="flex items-center gap-2">
                 <BadgeSimpleUse
-                  desc={"Status Tour"}
+                  desc={"Status Booking "}
                   icon={<LucideMapPinCheck />}
                   variant={"default"}
                 />
@@ -201,6 +206,19 @@ export default function PopupUpdateTours({
                   value={valueIsSoldOut}
                   defaults={soldOut}
                   {...register("soldOut")}
+                />
+              </div>
+              <div className="flex items-center gap-2">
+                <BadgeSimpleUse
+                  desc={"Status Tour"}
+                  icon={<LucideMapPinCheck />}
+                  variant={"default"}
+                />
+
+                <SelectOptionsSimple
+                  value={valueIsActiveTour}
+                  defaults={isActiveTour}
+                  {...register("isActiveTour")}
                 />
               </div>
               <div className="flex items-center gap-2">
@@ -294,7 +312,10 @@ export default function PopupUpdateTours({
                   </div>
                   <div className="flex items-center gap-5 flex-wrap">
                     {listDestination?.map((el, index) => (
-                      <div className="bg-gray-50 p-3 rounded-xl border border-gray-200/70 space-y-3">
+                      <div
+                        className="bg-gray-50 p-3 rounded-xl border border-gray-200/70 space-y-3"
+                        key={index}
+                      >
                         <ImagesList
                           key={index}
                           valueLocation={el}

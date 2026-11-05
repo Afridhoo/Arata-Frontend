@@ -12,6 +12,7 @@ import {
   LucideMapPinCheckInside,
   LucideMapPinSearch,
 } from "lucide-react";
+import NotActiveAccount from "./NotActiveAccount";
 
 export default function SidebarGuides() {
   const { isUserNotLogin, user, isAuthPending } = useAuth();
@@ -19,9 +20,10 @@ export default function SidebarGuides() {
   if (!isUserNotLogin) return <UserNotExist />;
   if (isAuthPending) return <NewLoading />;
 
-  const { role } = user;
+  const { role, active } = user;
 
   if (role !== "guide") return <CannotAcsess />;
+  if (!active) return <NotActiveAccount />;
 
   const Route = {
     navMain: [

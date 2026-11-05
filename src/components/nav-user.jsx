@@ -23,11 +23,6 @@ import {
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
-const fastFitur = [
-  { title: "Profil Akun", url: "/AccountMe", icon: <LucideUser2 /> },
-  { title: "Halaman Home", url: "/", icon: <LucideArrowUpLeft /> },
-];
-
 export function NavUser({ user }) {
   const { isMobile } = useSidebar();
   const { mutate: Logout } = UseSignOut();
@@ -38,6 +33,14 @@ export function NavUser({ user }) {
   function handleLogOut() {
     Logout();
   }
+  const fastFitur = [
+    { title: "Profil Akun", url: "/AccountMe", icon: <LucideUser2 /> },
+    user?.role !== "guide" && {
+      title: "Halaman Home",
+      url: "/",
+      icon: <LucideArrowUpLeft />,
+    },
+  ];
 
   return (
     <SidebarMenu>

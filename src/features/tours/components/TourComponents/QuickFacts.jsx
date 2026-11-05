@@ -10,7 +10,7 @@ export default function QuickFacts({ tour }) {
     {
       icon: <FaCalendarAlt className="text-base text-gray-400" />,
       label: "Tanggal Berangkat",
-      value: date ? formatDateId(date) : "Ditentukan setelah min. 5 peserta",
+      value: date ? formatDateId(date) : "Tanggal Belum Ditentukan",
     },
     {
       icon: <FaClock className="text-base text-gray-400" />,

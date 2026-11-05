@@ -1,11 +1,4 @@
-import {
-  IoClose,
-  IoCheckmark,
-  IoPerson,
-  IoMail,
-  IoShieldHalf,
-  IoCalendar,
-} from "react-icons/io5";
+import { IoClose } from "react-icons/io5";
 import { formatDateId } from "../../../utils/convertDate";
 import { FiArrowDown } from "react-icons/fi";
 import { useState } from "react";
@@ -17,13 +10,16 @@ import { DialogSimpleUse } from "@/components/DialogSimpleUse";
 
 export default function PopupUpdateRole({ valueUser, onCancel, onSave }) {
   const { name, email, role, photo, createAt, _id, active } = valueUser || {};
-  const valOptions = ["user", "guide", "admin", "nonaktif"];
+  const valOptions = ["user", "guide", "admin", "nonaktif", "aktif"];
   const [newRole, setRole] = useState(role || "user");
 
   function handleSave() {
     const value = { id: _id, newRole };
     onSave(value);
   }
+
+  
+
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 p-4 backdrop-blur-sm">
@@ -63,12 +59,12 @@ export default function PopupUpdateRole({ valueUser, onCancel, onSave }) {
               </p>
               <div className="flex items-center gap-3 mt-2">
                 <BadgeSimpleUse
-                  desc={role}
+                  desc={`${active ? role : `${role} dinonaktifkan`}`}
                   icon={<LucideUserCheck2 />}
-                  variant={"default"}
+                  variant={active ? "default" : "destructive"}
                 />
                 <BadgeSimpleUse
-                  desc={formatDateId(createAt, true)}
+                  desc={`Dibuat:${formatDateId(createAt, true)}`}
                   icon={<LucideUserCheck2 />}
                   variant={"outline"}
                 />
@@ -115,7 +111,7 @@ export default function PopupUpdateRole({ valueUser, onCancel, onSave }) {
             btnText={"Update Role"}
             onSucsess={handleSave}
             title={`Update Role ${name}`}
-            desc={"Apakah Anda Yakin Ingin Mengupdate Rol Akun Ini ?"}
+            desc={"Apakah Anda Yakin Ingin Mengupdate Role Akun Ini ?"}
           />
         </div>
       </div>

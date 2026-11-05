@@ -15,7 +15,7 @@ export async function SignOut() {
 export async function SignIn(value) {
   const signIn = await callAxiosApi.post(`users/login`, value);
 
-  return signIn;
+  return signIn.data;
 }
 
 export async function GetMe() {

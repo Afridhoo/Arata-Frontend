@@ -93,9 +93,6 @@ export default function MapsUpdate({
     const cheking = concatValue.find((el) => el._id === idLocation && el.image);
     const getConcatVal = concatValue.find((el) => el._id === idLocation);
 
-
-    
-
     if (cheking) {
       DeleteLocation({ idTour, idLocation, setConcatValue });
       handleDeleteLine(cheking);
@@ -208,7 +205,7 @@ export default function MapsUpdate({
       <div className="z-[999] absolute right-5 flex items-center gap-2 top-20">
         <SpinnerBtn
           disabled={isPending}
-          text={isPending ? "Mencari Lokasi Lama" : "Update Lokasi"}
+          text={isPending ? "Mencari Lokasi Lama" : "Munculkan Data Lokasi"}
           handleClick={listDestination ? handleSaveEdit : handleEdit}
         />
         <BadgeSimpleUse

@@ -232,8 +232,7 @@ export default function MapsContainer({
 
           <SpinnerBtn
             disabled={isPending}
-            text={isPending  ? "Mencari Lokasi" : "Simpan Lokasi"}
-            
+            text={isPending ? "Mencari Lokasi" : "Simpan Lokasi"}
             handleClick={handleSaveLocationsFinal}
           />
         </div>

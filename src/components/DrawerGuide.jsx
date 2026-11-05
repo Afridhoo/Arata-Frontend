@@ -15,6 +15,7 @@ import { AccordionLocationsInDrawer } from "./AccordionLocationsInDrawer";
 import { DialogSimpleUse } from "./DialogSimpleUse";
 import { whatsappLink } from "@/Api/ApiWhatsApp";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { validNumberFormat } from "@/utils/numberValidFormat";
 
 export function DrawerGuide({
   title,
@@ -44,8 +45,8 @@ export function DrawerGuide({
           <div>
             {guide?.map((el, i) => {
               const { guideIdentity, destHandle } = el || {};
-
               const { email, photo, name, telphone } = guideIdentity || {};
+              const validNum = validNumberFormat(telphone);
 
               return (
                 <div className="p-4 pt-10 border-b ">
@@ -69,12 +70,15 @@ export function DrawerGuide({
                       style={"w-fit h-fit text-xs "}
                       title={"Menghubungi Pemandu"}
                       desc={`Pastikan Memang Ada Keadaan Mendesak ,Yakin Ingin Menghubungi ${name} ?`}
-                      onSucsess={() => whatsappLink(el?.telphone)}
+                      onSucsess={() => whatsappLink(validNum)}
                     />
                   </div>
 
                   <div className="pt-3">
-                    <AccordionLocationsInDrawer locations={destHandle}  noDesc={mobileCheck}/>
+                    <AccordionLocationsInDrawer
+                      locations={destHandle}
+                      noDesc={mobileCheck}
+                    />
                   </div>
                 </div>
               );

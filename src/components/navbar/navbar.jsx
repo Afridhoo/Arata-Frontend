@@ -1,4 +1,4 @@
-import { Outlet, Link, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Scroll from "../Scroll";
 import { useAuth } from "@/utils/AuthContext";
@@ -12,10 +12,12 @@ const handleSplit = (s) => s.split("/")[1]?.toLowerCase();
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-
+  const navigate = useNavigate();
   const isMobile = useIsMobile();
   const { pathname } = useLocation();
-  const { isUserNotLogin } = useAuth();
+  const { isUserNotLogin, user } = useAuth();
+
+  if (user?.role === "guide") navigate("/AccountMe", { replace: true });
 
   const navbar = NavbarItems(isUserNotLogin);
   const { navItems, navUserNotLogin: NotLogin, navMobile } = navbar;
@@ -48,7 +50,7 @@ export default function Navbar() {
         <MobileNavbar navMobile={navMobile} />
       </nav>
 
-      <main className={!isMobile ? "pt-24" : 'pb-10'}>
+      <main className={!isMobile ? "pt-24" : "pb-10"}>
         <Outlet />
       </main>
     </div>

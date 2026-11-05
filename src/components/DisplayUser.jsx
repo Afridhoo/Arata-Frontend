@@ -15,14 +15,20 @@ import { LucideMail } from "lucide-react";
 import { DialogSimpleUse } from "./DialogSimpleUse";
 import { whatsappLink } from "@/Api/ApiWhatsApp";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { validNumberFormat } from "@/utils/numberValidFormat";
 
 export default function DisplayUser({ UserBooking, icon, nameTour }) {
-   const mobileCheck = useIsMobile();
+  const mobileCheck = useIsMobile();
   return (
     <div>
       <Drawer swipeDirection={mobileCheck ? "down" : "right"}>
         <DrawerTrigger
-          render={<Button size="lg" variant="default"> User Booking {icon}</Button>}
+          render={
+            <Button size="lg" variant="default">
+              {" "}
+              User Booking {icon}
+            </Button>
+          }
         />
         <DrawerContent>
           <DrawerHeader>
@@ -43,15 +49,20 @@ export default function DisplayUser({ UserBooking, icon, nameTour }) {
                           "bg-gray-300 text-gray-700 font-semibold rounded-bl-lg ml-1 "
                         }
                       />
-                      <DialogSimpleUse
-                        btnText={"Hubungi User"}
-                        style={
-                          "w-fit rounded-full bg-red-400 h-fit text-xs py-1"
-                        }
-                        title={"Menghubungi Darurat"}
-                        desc={`Pastikan Memang Ada Keadaan Mendesak ,Yakin Ingin Menghubungi ${el?.name} ?`}
-                        onSucsess={() => whatsappLink(el?.telphone)}
-                      />
+
+                      {el.telphone && (
+                        <DialogSimpleUse
+                          btnText={"Hubungi User"}
+                          style={
+                            "w-fit rounded-full bg-red-400 h-fit text-xs py-1"
+                          }
+                          title={"Menghubungi Darurat"}
+                          desc={`Pastikan Memang Ada Keadaan Mendesak ,Yakin Ingin Menghubungi ${el?.name} ?`}
+                          onSucsess={() =>
+                            whatsappLink(validNumberFormat(el?.telphone))
+                          }
+                        />
+                      )}
                     </div>
                   </div>
                   <div className="flex items-center gap-2 pt-8">
