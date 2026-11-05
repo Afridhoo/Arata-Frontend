@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useState } from "react";
 
 import TableBookingAdmin from "../BookingAdmin/components/BookingAdmin/TableBookingAdmin";
 import { formatDateId } from "../../utils/convertDate";
@@ -32,6 +32,7 @@ export default function AddNewGuide() {
     "telphone",
     "role",
     "Booking Aktif",
+    "status",
     "createAt",
   ];
   const filterVal = ResultSearch?.map((el) => ({
@@ -42,9 +43,12 @@ export default function AddNewGuide() {
       el.telphone,
       el.role,
       el.isActiveTrip,
-      formatDateId(el.createAt),
+      el.active ? "Aktif" : "Nonaktif",
+      formatDateId(el.createAt, true),
     ],
   }));
+
+  
 
   function handleEdit(idUser) {
     const getUser = ResultSearch?.find((el) => el._id === idUser);
