@@ -37,7 +37,7 @@ export function AccordionListTourLocations({ locations }) {
           );
 
           if (!acc[idxTime])
-            acc[idxTime] = { _id: getText._id, time: [], text: getText.value };
+            acc[idxTime] = { _id: getText?._id, time: [], text: getText?.value };
 
           acc[idxTime].time.push({ labelTime, valueTime });
           return acc;

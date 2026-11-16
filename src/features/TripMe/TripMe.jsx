@@ -1,5 +1,5 @@
-import { UseGetTripMe, UsePostReviewGuide } from "./UseGetTripMe";
-import RenderNullTrip from "./componentes/RenderNullTrip";
+import { UseGetTripMe } from "./UseGetTripMe";
+
 import { useState } from "react";
 import RenderListQuickFastInfo from "./componentes/RenderListQuickFastInfo";
 import {
@@ -17,8 +17,7 @@ import {
 } from "lucide-react";
 import { formatDateId } from "@/utils/convertDate";
 
-import { CarouselPhotoDisplay } from "@/components/CarouselPhotoDisplay";
-import ArrowUpRight from "@/components/ArrowUpRight";
+
 
 import Footer from "@/components/Footer/Footer";
 import MapLocationTour from "@/components/Maps/MapLocationTour";
@@ -36,7 +35,7 @@ import { UserNotExist } from "@/components/UserNotExist";
 import { AccordionListTourLocations } from "@/components/AccordionListTourLocations";
 import { useAuth } from "@/utils/AuthContext";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useNavigate } from "react-router-dom";
+
 import LabelHeader from "@/components/LabelHeader";
 import RenderDocumentation from "./componentes/RenderDocumentation";
 
@@ -49,6 +48,8 @@ export default function TripMe() {
 
   if (!isUserNotLogin) return <UserNotExist />;
   if (isPending) return <NewLoading />;
+
+  
 
   if (Trip?.length === 0)
     return (
