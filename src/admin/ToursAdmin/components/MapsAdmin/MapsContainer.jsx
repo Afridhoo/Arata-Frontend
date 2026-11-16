@@ -15,6 +15,7 @@ import {
   IconDestinationActive,
   IconHotel,
   IconHotelsActive,
+  IconStartLocation,
   MapView,
   MarkerCords,
   PopUpDisplay,
@@ -205,6 +206,7 @@ export default function MapsContainer({
               <Marker
                 key={idx}
                 position={[el.coordinates[1], el.coordinates[0]]}
+                icon={IconStartLocation}
               >
                 <Popup>{el.name}</Popup>
               </Marker>
