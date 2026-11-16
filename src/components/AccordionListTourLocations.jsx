@@ -18,7 +18,10 @@ import BadgePerStatusLocations from "./BadgePerStatusLocations";
 import { eachDayOfInterval } from "date-fns";
 import { useState } from "react";
 
-export function AccordionListTourLocations({ locations }) {
+export function AccordionListTourLocations({
+  locations,
+  isBookingFinished = false,
+}) {
   const [activeAccordion, setActiveAccordion] = useState(null);
 
   const getValid = [...(locations || [])]?.sort(
@@ -37,7 +40,11 @@ export function AccordionListTourLocations({ locations }) {
           );
 
           if (!acc[idxTime])
-            acc[idxTime] = { _id: getText?._id, time: [], text: getText?.value };
+            acc[idxTime] = {
+              _id: getText?._id,
+              time: [],
+              text: getText?.value,
+            };
 
           acc[idxTime].time.push({ labelTime, valueTime });
           return acc;
@@ -72,9 +79,9 @@ export function AccordionListTourLocations({ locations }) {
             } = item || {};
             const { from, to } = date || {};
 
-            const getValidSchedule = getSchedule.find(
-              (s) => s._id === _id,
-            )?.dataSchedule;
+            const getValidSchedule = isBookingFinished
+              ? []
+              : getSchedule.find((s) => s._id === _id)?.dataSchedule;
 
             const getDateRange = eachDayOfInterval({
               start: new Date(from),

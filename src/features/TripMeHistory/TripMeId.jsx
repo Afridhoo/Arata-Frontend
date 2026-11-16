@@ -25,8 +25,7 @@ import { formatCurrencyId } from "@/utils/convertCurrency";
 import ReviewGuide from "@/components/ReviewGuide";
 import Review from "@/components/Review";
 import TourGuides from "@/components/TourGuides";
-import { CarouselPhotoDisplay } from "@/components/CarouselPhotoDisplay";
-import ArrowUpRight from "@/components/ArrowUpRight";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer/Footer";
 import BookingTour from "../tours/components/TourComponents/BookingTour";
@@ -283,7 +282,10 @@ export default function TripMeId() {
         </div>
 
         <div className="mt-18 md:flex hidden">
-          <AccordionListTourLocations locations={concatVal} />
+          <AccordionListTourLocations
+            locations={concatVal}
+            isBookingFinished={!!dateFinished}
+          />
         </div>
 
         <RenderDocumentation idTour={idTour} getImgDocumentation={getImg} />
