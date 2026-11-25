@@ -2,7 +2,7 @@ import { formatDateId } from "../../../utils/convertDate";
 import { UseGetTours } from "../hooks/useTours";
 import { FiCalendar, FiFlag, FiUser, FiClock, FiHeart } from "react-icons/fi";
 import { AiFillStar } from "react-icons/ai";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link,  useSearchParams } from "react-router-dom";
 
 import { FaHotel } from "react-icons/fa";
 import HoverCardUse from "@/components/HoverCardUse";
@@ -37,8 +37,6 @@ export default function Tours() {
   if (isPending) return <NewLoading />;
   const { tour, categories } = ToursData || [];
 
-  const Favorite = ToursData?.favorite || [];
-
   function handleFavorite(_id) {
     const value = { tour: _id, user: User?._id };
     InsertFavorite({ value });
@@ -54,8 +52,6 @@ export default function Tours() {
 
       <div className="grid mb-10 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-8 pb-16  max-w-7xl mx-auto">
         {tour?.map((el, idx) => {
-          const cheking = Favorite?.some((x) => x.tour === el?._id);
-
           return (
             <article
               key={idx}
@@ -78,7 +74,7 @@ export default function Tours() {
                         >
                           <FiHeart
                             className="text-l"
-                            fill={cheking ? "orange" : "white"}
+                            fill={"white"}
                             stroke="orange"
                           />
                         </div>

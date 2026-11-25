@@ -7,7 +7,6 @@ export async function GetTours({ limit, filter }) {
 
   const format = {
     tour: response.data.data.value || [],
-    favorite: response.data.data.getFavorite || [],
     categories: response.data.data.getCategories || [],
   };
 

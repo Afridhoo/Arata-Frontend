@@ -17,8 +17,6 @@ import {
 } from "lucide-react";
 import { formatDateId } from "@/utils/convertDate";
 
-
-
 import Footer from "@/components/Footer/Footer";
 import MapLocationTour from "@/components/Maps/MapLocationTour";
 import Review from "@/components/Review";
@@ -48,8 +46,6 @@ export default function TripMe() {
 
   if (!isUserNotLogin) return <UserNotExist />;
   if (isPending) return <NewLoading />;
-
-  
 
   if (Trip?.length === 0)
     return (

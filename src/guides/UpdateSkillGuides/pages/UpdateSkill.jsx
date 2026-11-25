@@ -19,10 +19,13 @@ export default function UpdateSkill() {
   const { register, handleSubmit } = useForm();
   const { data: CategoriesTour } = UseTourSkill();
   const { mutate: UpdateSkill, isPending } = UseUpdateSkill();
-  const { data: Guide } = UseGetMeGuide();
+  const { data: Guide, isPending: LoadDataGuide } = UseGetMeGuide();
   const { mutate: DeleteOneSkill, isPending: LoadDelete } = UseDeleteOneSkill();
 
-  if (isPending || !CategoriesTour || !Guide || LoadDelete)
+  console.log(Guide)
+
+
+  if (isPending || !CategoriesTour || LoadDataGuide || LoadDelete)
     return <NewLoading />;
 
   const { data } = CategoriesTour;
@@ -70,7 +73,6 @@ export default function UpdateSkill() {
       </div>
       <form onSubmit={handleSubmit(submitValue)} className="space-y-8">
         <div className="space-y-4">
-
           <div className="flex items-center flex-wrap justify-between ">
             <h2 className="text-lg font-semibold tracking-tight text-foreground flex items-center gap-2">
               <div className="flex items-center gap-10">
